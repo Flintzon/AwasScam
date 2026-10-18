@@ -1,28 +1,23 @@
 ---
-name: AWAS SCAM!
-description: "Selidiki pesannya, jangan cuma dibaca — game literasi penipuan digital bergaya Editorial Digital Detective"
+name: AWAS KENA TIPU!
+description: "Misi Dana Pensiun — selidiki pesannya, jangan cuma dibaca; game literasi penipuan digital bergaya Editorial Digital Detective"
 colors:
-  ink: "#17243a"
-  ink-soft: "#33415c"
-  ink-muted: "#56647c"
-  line: "#dce2ea"
-  line-strong: "#c3ccd9"
-  mist: "#f3f5f8"
+  ink: "#172640"
+  ink-soft: "#3f4d6b"
+  ink-muted: "#5d6982"
+  line: "#d8dde8"
+  line-strong: "#b6bfd2"
+  mist: "#f3f6fa"
   paper: "#ffffff"
-  teal: "#168c87"
-  teal-deep: "#0f6b67"
-  teal-tint: "#e3f1f0"
-  red: "#d94b4b"
-  red-btn: "#c23a3a"
-  red-deep: "#b03535"
-  red-tint: "#fbebeb"
-  yellow: "#f0c75e"
-  yellow-tint: "#fbf2da"
-  artifact-whatsapp-bg: "#0b141a"
-  artifact-whatsapp-bar: "#202c33"
-  artifact-browser-dot-red: "#ff5f57"
-  artifact-browser-dot-yellow: "#febc2e"
-  artifact-browser-dot-green: "#28c840"
+  accent: "#ff751f"
+  accent-deep: "#b04a00"
+  accent-tint: "#ffe8db"
+  safe-tint: "#e3e8f1"
+  artifact-whatsapp-bg: "#101c33"
+  artifact-whatsapp-bar: "#172640"
+  artifact-browser-dot-red: "#ff751f"
+  artifact-browser-dot-yellow: "#f7cbae"
+  artifact-browser-dot-green: "#b6bfd2"
 typography:
   display:
     fontFamily: "Newsreader, Georgia, 'Times New Roman', serif"
@@ -57,7 +52,7 @@ rounded:
   pill: "999px"
 ---
 
-# AWAS SCAM! — Sistem Desain "Editorial Digital Detective"
+# AWAS KENA TIPU! — Sistem Desain "Editorial Digital Detective"
 
 ## Kepribadian
 
@@ -67,24 +62,27 @@ yang bisa disentuh. Setiap layar mengajak pembaca memeriksa bukti, bukan menonto
 Anti-reference yang terkonfirmasi: cream/coral/detective-blue era lama, comic-neon minigame
 (glow, scanline, ledakan "TERBONGKAR"), glassmorphism, gradien teks, kartu rounded seragam.
 
-## Palet (dikunci)
+## Palet (dikunci — triad 60-30-10)
+
+Hanya tiga warna inti: navy, light, oranye (+ tint/shade turunannya). Tidak ada
+warna lain — teal, merah, kuning, hijau semuanya sudah dilebur ke triad ini.
 
 | Peran | Nilai | Aturan |
 |---|---|---|
-| Ink Navy | `#17243A` | Teks utama, tombol primer, panel gelap. Wajah "tinta". |
-| Ink Soft/Muted | `#33415C` / `#56647C` | Teks sekunder/tersier; muted lolos 4.5:1 di atas putih. |
-| Cool Mist | `#F3F5F8` | Background halaman & stage panggung permainan. |
-| Paper White | `#FFFFFF` | Permukaan kartu, nav, panel dialog. |
-| Signal Teal | `#168C87` | Sinyal benar/aman: kuis benar, fitur aktif, maskot. `#0F6B67` untuk teks/tombol (AA). |
-| Alert Red | `#D94B4B` | Bahaya; teks merah di permukaan terang memakai deep `#B03535`, tombol `#C23A3A`. |
-| Evidence Yellow | `#F0C75E` | Petunjuk & penanda bukti — selalu membawa teks ink, tidak pernah teks putih. |
-| Garis | `#DCE2EA` / `#C3CCD9` | Pemisah tipis 1px; tidak ada border tebal dekoratif. |
+| Light 60% | `#F3F6FA` | Background halaman, stage panggung, panel terang; `#FFFFFF` sebagai kertas netral (kartu, nav). |
+| Navy 30% | `#172640` | Teks utama, tombol primer, panel gelap, **sinyal aman/resmi** (dulu teal). Soft `#3F4D6B`, muted `#5D6982` untuk teks sekunder/tersier. |
+| Accent 10% | `#FF751F` | Perhatian: petunjuk, bahaya, CTA "Mulai Misi", "!" logo, node langkah, tanda kutip bukti. Di atas light bawa teks navy (kontras ~5.4:1); teks oranye di permukaan light memakai deep `#B04A00`. |
+| Tints | `#FFE8DB` (aksen) / `#E3E8F1` (aman) | Latar chip & banner; selalu berpasangan dengan teks `#B04A00` / navy. |
+| Garis | `#D8DDE8` / `#B6BFD2` | Pemisah tipis 1px; tidak ada border tebal dekoratif. |
 
-Kolaborasi: putih bg + kuning = catatan petunjuk (`.panel-tint`); mist bg + teal = status
-benar (`.chip-teal`); tinta bg + putih = momen penutup (`.panel-ink`).
+Semantik: **navy = aman/struktur/resmi**, **oranye = perhatian/petunjuk/bahaya/CTA**.
+Aman di atas panel gelap memakai light `#F3F6FA` (navy tak terlihat di navy).
 
-**Gelap hanya di dalam artefak otentik**: layar WhatsApp (`#0b141a`), layar panggilan,
-situs scam. Jangan pernah membuat shell UI gelap.
+Kolaborasi: light bg + oranye = catatan petunjuk (`.panel-tint`, tape, mark); light
+tint + navy = status benar (`.chip-teal`); navy bg + light = momen penutup (`.panel-ink`).
+
+**Gelap hanya di dalam artefak otentik**: layar WhatsApp (`#101C33`), layar panggilan,
+situs scam (tint navy `#14233F` / `#1B2B4A`). Jangan pernah membuat shell UI gelap.
 
 ## Tipografi
 
@@ -98,14 +96,16 @@ situs scam. Jangan pernah membuat shell UI gelap.
 
 ## Layout & Halaman
 
-- **Nav** (`SiteChrome`): putih sticky, tinggi 62px, border-b 1px; wordmark "AWAS SCAM!" + "!"
-  teal-deep; link aktif = teks ink + underline 2,5px teal-deep. Tiga link saja (Kasus, Panduan,
-  Progres) — tanpa CTA di nav; "Tentang & Kredit" hanya di footer; menu mobile = daftar link polos.
-- **Homepage**: tiga bagian. (1) Hero: headline Newsreader max-w 17ch dengan sorotan kuning,
-  deck dua baris, satu CTA tinta. (2) Pratinjau: folio mono "Kasus 01 · judul" + garis ink,
-  artefak chat kasus 1 disandingkan 3 catatan bernomor (numeral dalam bulatan kuning) — bukan
-  hero teks-kiri/gambar-kanan, bukan barisan kartu. (3) Footer. Tanpa registrasi kasus, alur,
-  kompetensi, atau penutup bidang kuning.
+- **Nav** (`SiteChrome`): putih sticky, tinggi 62px, border-b 1px; wordmark "AWAS KENA TIPU!" +
+  "!" accent, sublabel "Misi Dana Pensiun"; link aktif = teks ink + underline 2,5px accent.
+  Tiga link (Kasus, Panduan, Progres) + CTA "Mulai Misi" (btn-primary sm) di kanan, desktop &
+  mobile; "Tentang & Kredit" hanya di footer.
+- **Homepage**: empat bagian. (1) Hero: kicker mono berkas + headline Newsreader max-w 15ch
+  dengan sorotan kuning, deck, CTA "Mulai Misi"/"Kenali Permainannya", sinyal "Game interaktif";
+  visual = artefak chat miring (BUKTI 01) + maskot investigating menyelidiki. (2) Cara bermain:
+  alur 4 langkah berbenang merah (dashed thread) — bukan kartu seragam. (3) Berkas kasus: case 1
+  featured besar + 3 baris thumbnail, seluruh baris tautan. (4) Penutup panel tinta: headline
+  "Naluri itu bisa dilatih", CTA kuning, maskot completion dalam disc kuning.
 - **Katalog kasus** (`/kasus`): baris editorial bergaris rambut — seluruh baris jadi tautan,
   numeral serif + `level-dots` + durasi + panah; filter level = tab underline (`aria-pressed`),
   bukan pil. Tanpa kartu grid.
@@ -116,15 +116,17 @@ situs scam. Jangan pernah membuat shell UI gelap.
 
 ## Komponen (di `globals.css`)
 
-- `.btn` — radius 6px, `btn-primary` (ink), `btn-teal`, `btn-secondary` (putih+garis),
-  `btn-danger` (red-btn), `btn-ghost`; ukuran `btn-sm/lg/block`. Tanpa bayangan offset keras;
-  hover = perubahan warna/border saja (tanpa pergeseran).
+- `.btn` — radius 6px, `btn-primary` (ink), `btn-teal` (alias navy), `btn-secondary` (putih+garis),
+  `btn-danger` (oranye, teks navy), `btn-yellow` (oranye = CTA misi), `btn-ghost`; ukuran
+  `btn-sm/lg/block`. Tanpa bayangan offset keras; hover = perubahan warna/border saja.
 - `.card` — putih, border 1px `--line`, radius 6px. `.card-hover` hover = border-color saja.
-- `.chip` — radius 6px, label kecil; varian `chip-ink/teal/red/yellow/outline`.
-- `.meter` — bar 8px; isian teal (benar) atau red (bahaya) lewat inline style.
+- `.chip` — radius 6px, label kecil; varian `chip-ink/teal/red/yellow/outline` (teal=navy,
+  red/yellow=oranye tint).
+- `.meter` — bar 8px; isian navy (aman) atau oranye (bahaya) lewat inline style.
 - `.icon-tile` — kotak ke radius 6px, mist bg, ikon ink (lucide).
 - `.note-mascot` — maskot 56px + teks, tanpa bubble ekor.
-- `.panel-tint` (kuning) & `.panel-ink` (tinta) radius 6px untuk aksen.
+- `.panel-tint` (aksen oranye) & `.panel-ink` (navy) radius 6px untuk aksen.
+- Fokus: outline 3px navy; di dalam `.panel-dark` outline menjadi oranye agar kontras.
 
 ## Panggung Permainan (`GameExperience`)
 
@@ -134,15 +136,15 @@ situs scam. Jangan pernah membuat shell UI gelap.
   besar; footer = satu baris disclaimer ("Simulasi edukasi — …fiktif"), bukan poin.
 - Bukti di atas (`CaseArt`), dialog tepat di bawah (`ComicDialogBox`) — tidak tumpang tindih.
 - Dialog: chip speaker `chip-ink`, teks 66ch, pilihan = baris putih border 1px radius 6px
-  **tanpa ikon** (label + label kedua + chevron kanan), risky = shake + ring red, aman = ring teal.
+  **tanpa ikon** (label + label kedua + chevron kanan), risky = shake + ring oranye, aman = ring navy.
 - Minigame (modal): shell putih di atas backdrop ink-blurred; mekanik & skor dipertahankan;
   kegelapan hanya pada artefak (chat, layar panggilan, situs scam); tanpa glow/ledakan/
-  scanline/kedip; feedback sukses = tint teal, gagal = tint red.
+  scanline/kedip; feedback sukses = tint aman (navy), gagal = tint bahaya (oranye).
 
 ## Maskot
 
-8 pose SVG orisinal di `public/assets/mascot/` — jas teal `#17243A`→rambut ink,
-rompi/aksen `#168C87`, kancing `#F0C75E`, kaos `#FFFFFF`. Hanya di momen yang bermakna:
+8 pose SVG orisinal di `public/assets/mascot/` — duotone triad: jas/rambut navy `#172640`,
+kulit & aksen oranye `#FF751F`, kaos `#F3F6FA`. Hanya di momen yang bermakna:
 halaman hasil kasus (`completion`) dan umpan balik minigame (`success`/`alert`); tanpa
 mascot di nav, panduan, progres, atau panel petunjuk.
 
@@ -151,7 +153,7 @@ mascot di nav, panduan, progres, atau panel petunjuk.
 - **Do**: mulai tiap halaman dengan satu pernyataan besar (Newsreader) + bukti nyata;
   pakai lucide untuk semua ikon; pertahankan warna otentik artefak (WhatsApp, traffic-light
   browser, emas scam di dalam sandboxnya).
-- **Do**: status selalu punya teks — jangan hanya warna (a11y), fokus 3px teal-deep.
+- **Do**: status selalu punya teks — jangan hanya warna (a11y), fokus 3px navy (oranye di panel gelap).
 - **Don't**: gradien teks, emoji sebagai ikon, angka 01/02/03 dekoratif, kartu seragam
   tanpa hierarki, bayangan offset keras `0 4px 0`, pill tombol, glassmorphism, hue di luar
-  palet, teks merah `#D94B4B` untuk body kecil di atas putih (pakai `#B03535`).
+  triad, teks oranye terang untuk body kecil di atas putih (pakai `#B04A00`).

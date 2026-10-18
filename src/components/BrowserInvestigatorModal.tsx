@@ -172,7 +172,7 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         </table>
       </div>
 
-      <div className="flex items-start gap-2 rounded-[8px] border border-[#f0c4c4] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
+      <div className="flex items-start gap-2 rounded-[8px] border border-[#f7cbae] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
         <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
         <span>{tool.finding}</span>
       </div>
@@ -216,7 +216,7 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         </div>
       </div>
 
-      <div className="flex items-start gap-2 rounded-[8px] border border-[#f0c4c4] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
+      <div className="flex items-start gap-2 rounded-[8px] border border-[#f7cbae] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
         <span>{tool.finding}</span>
       </div>
@@ -234,17 +234,17 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-[8px] border border-[var(--line)] bg-white p-2">
           <div className="mb-2 text-center text-[10px] font-bold uppercase text-[var(--ink-muted)]">Foto di website</div>
-          <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-[6px] border border-[#f0c4c4] bg-[var(--red-tint)]">
+          <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-[6px] border border-[#f7cbae] bg-[var(--red-tint)]">
             <UserRound className="mb-1 h-9 w-9 text-[var(--red-deep)]" />
             <div className="text-[10px] font-semibold text-[var(--red-deep)]">&quot;Dr. Hendra Wijaya&quot;</div>
-            <div className="text-[9px] text-[#8a4141]">CEO BursaKripto</div>
+            <div className="text-[9px] text-[#b04a00]">CEO BursaKripto</div>
             <span className="absolute right-1 top-1 rounded bg-[var(--red-deep)] px-1.5 py-0.5 text-[8px] font-bold text-white">PALSU</span>
           </div>
         </div>
 
-        <div className="rounded-[8px] border border-[#b9dcd9] bg-white p-2">
+        <div className="rounded-[8px] border border-[#b6bfd2] bg-white p-2">
           <div className="mb-2 text-center text-[10px] font-bold uppercase text-[var(--teal-deep)]">Sumber asli</div>
-          <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-[6px] border border-[#b9dcd9] bg-[var(--teal-tint)]">
+          <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-[6px] border border-[#b6bfd2] bg-[var(--teal-tint)]">
             <UserRound className="mb-1 h-9 w-9 text-[var(--teal-deep)]" />
             <div className="text-[10px] font-semibold text-[var(--teal-deep)]">Stock Photo #SK-44821</div>
             <div className="text-[9px] text-[var(--ink-muted)]">Shutterstock.com</div>
@@ -266,7 +266,7 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         </div>
       </div>
 
-      <div className="flex items-start gap-2 rounded-[8px] border border-[#f0c4c4] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
+      <div className="flex items-start gap-2 rounded-[8px] border border-[#f7cbae] bg-[var(--red-tint)] p-3 text-xs font-semibold leading-relaxed text-[var(--red-deep)]">
         <Eye className="mt-0.5 h-4 w-4 shrink-0" />
         <span>{tool.finding}</span>
       </div>
@@ -313,9 +313,9 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         {/* Browser chrome (artefak, versi terang) */}
         <div className="flex shrink-0 items-center gap-3 border-b border-[var(--line)] bg-[var(--mist)] px-4 py-2">
           <div className="flex items-center gap-1.5">
-            <span className="h-3 w-3 rounded-full border border-[#e33e38] bg-[#ff5f57]" />
-            <span className="h-3 w-3 rounded-full border border-[#d49c11] bg-[#febc2e]" />
-            <span className="h-3 w-3 rounded-full border border-[#1faa32] bg-[#28c840]" />
+            <span className="h-3 w-3 rounded-full border border-[#ff751f] bg-[#ff751f]" />
+            <span className="h-3 w-3 rounded-full border border-[#f7cbae] bg-[#febc2e]" />
+            <span className="h-3 w-3 rounded-full border border-[#b6bfd2] bg-[#b6bfd2]" />
           </div>
 
           <div className="flex max-w-[200px] items-center gap-2 truncate rounded-t-[6px] border border-b-0 border-[var(--line)] bg-[var(--white)] px-3 py-1.5 text-[11px] font-medium text-[var(--ink-soft)]">
@@ -324,14 +324,14 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
           </div>
 
           <div className="ml-auto flex items-center gap-2 rounded-[7px] border border-[var(--line-strong)] bg-[var(--white)] px-3 py-1.5">
-            <Shield className={`h-4 w-4 ${fraudScore > 60 ? 'text-[var(--red-deep)]' : fraudScore > 30 ? 'text-[#6d5410]' : 'text-[var(--ink-muted)]'}`} />
+            <Shield className={`h-4 w-4 ${fraudScore > 60 ? 'text-[var(--red-deep)]' : fraudScore > 30 ? 'text-[#b04a00]' : 'text-[var(--ink-muted)]'}`} />
             <div className="flex flex-col">
               <span className="text-[9px] font-bold uppercase leading-none text-[var(--ink-muted)]">Fraud score</span>
               <div className="flex items-center gap-1.5">
                 <div className="h-2 w-20 overflow-hidden rounded-full bg-[var(--mist)]">
                   <div
                     className="h-full rounded-full transition-all duration-300"
-                    style={{ width: `${fraudScore}%`, background: fraudScore > 60 ? 'var(--red)' : '#F0C75E' }}
+                    style={{ width: `${fraudScore}%`, background: fraudScore > 60 ? 'var(--red)' : '#ff751f' }}
                   />
                 </div>
                 <span className={`text-xs font-bold tabular-nums ${fraudScore > 60 ? 'text-[var(--red-deep)]' : 'text-[var(--ink-soft)]'}`}>
@@ -346,11 +346,11 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         <div className="flex shrink-0 items-center gap-2 border-b border-[var(--line)] bg-[var(--white)] px-4 py-2">
           <div className="flex flex-1 items-center gap-2 rounded-[7px] border border-[var(--line)] bg-[var(--mist)] px-3 py-1.5 font-mono text-xs">
             <Lock className="h-3.5 w-3.5 text-[var(--red-deep)]" />
-            <span className="rounded bg-[#fbebeb] px-1.5 py-0.5 text-[9px] font-bold text-[#b03535]">NOT SECURE</span>
+            <span className="rounded bg-[#ffe8db] px-1.5 py-0.5 text-[9px] font-bold text-[#b04a00]">NOT SECURE</span>
             <span className="select-none text-[var(--line-strong)]">|</span>
             <span className="truncate text-[var(--red-deep)]">https://bursakriptonusantara-vip.xyz/task-vip</span>
           </div>
-          <span className="flex shrink-0 items-center gap-1 rounded-[7px] border border-[#f0c4c4] bg-[var(--red-tint)] px-2.5 py-1 text-[10px] font-bold text-[var(--red-deep)]">
+          <span className="flex shrink-0 items-center gap-1 rounded-[7px] border border-[#f7cbae] bg-[var(--red-tint)] px-2.5 py-1 text-[10px] font-bold text-[var(--red-deep)]">
             <FileWarning className="h-3 w-3" />
             PHISHING
           </span>
@@ -360,101 +360,101 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
         <div className="grid flex-1 grid-cols-1 overflow-hidden lg:grid-cols-12">
 
           {/* KIRI: mockup situs scam (artefak garang, tapi di dalam sandbox) */}
-          <div className="overflow-y-auto border-b border-[#22304a] bg-[#14120c] lg:col-span-5 lg:border-b-0 lg:border-r">
+          <div className="overflow-y-auto border-b border-[#2c3d5c] bg-[#172640] lg:col-span-5 lg:border-b-0 lg:border-r">
             <div className="space-y-3 p-4">
 
               {/* Site header */}
-              <div className="rounded-[10px] bg-[#F0C75E] p-3 text-center">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-[#5c4a10]">Platform #1 Indonesia</div>
-                <div className="text-lg font-extrabold leading-tight text-[#14120c]">BursaKriptoNusantara</div>
-                <span className="mt-1 inline-block rounded bg-[#14120c] px-2 py-0.5 text-[10px] font-bold text-[#F0C75E]">
+              <div className="rounded-[10px] bg-[#ff751f] p-3 text-center">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#172640]">Platform #1 Indonesia</div>
+                <div className="text-lg font-extrabold leading-tight text-[#172640]">BursaKriptoNusantara</div>
+                <span className="mt-1 inline-block rounded bg-[#172640] px-2 py-0.5 text-[10px] font-bold text-[#ff751f]">
                   VIP MEMBER AREA
                 </span>
               </div>
 
               {/* Profit chart */}
-              <div className="rounded-[10px] border border-[#2a2415] bg-[#1c1912] p-3">
+              <div className="rounded-[10px] border border-[#3a4d70] bg-[#14233f] p-3">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="flex items-center gap-1 text-[10px] font-bold text-[#54d18a]">
+                  <span className="flex items-center gap-1 text-[10px] font-bold text-[#ffb794]">
                     <TrendingUp className="h-3 w-3" /> LIVE PROFIT
                   </span>
-                  <span className="font-mono text-[10px] font-bold text-[#54d18a]">+342,7%</span>
+                  <span className="font-mono text-[10px] font-bold text-[#ffb794]">+342,7%</span>
                 </div>
                 <div className="flex h-16 items-end gap-1">
                   {[35, 45, 30, 55, 65, 50, 72, 80, 68, 85, 90, 95, 88, 92, 98].map((h, i) => (
-                    <div key={i} className="flex-1 rounded-t-sm bg-[#2e8b57]" style={{ height: `${h}%` }} />
+                    <div key={i} className="flex-1 rounded-t-sm bg-[#f7cbae]" style={{ height: `${h}%` }} />
                   ))}
                 </div>
-                <div className="mt-1 text-center text-[9px] text-[#8696a0]">Data profit member (DIPALSUKAN)</div>
+                <div className="mt-1 text-center text-[9px] text-[#9aa6bd]">Data profit member (DIPALSUKAN)</div>
               </div>
 
               {/* Countdown */}
-              <div className="space-y-1 rounded-[10px] border border-[#7a2f2f] bg-[#241417] p-3 text-center">
-                <div className="flex items-center justify-center gap-1 text-[10px] font-bold uppercase text-[#f2b8b5]">
+              <div className="space-y-1 rounded-[10px] border border-[#ff751f] bg-[#1b2b4a] p-3 text-center">
+                <div className="flex items-center justify-center gap-1 text-[10px] font-bold uppercase text-[#ffb794]">
                   <Clock className="h-3 w-3" /> Slot VIP tersisa
                 </div>
                 <div className="font-mono text-2xl font-bold tracking-wider text-white">{formatCountdown(countdownSeconds)}</div>
-                <div className="text-[10px] font-semibold text-[#f2b8b5]">Hanya 3 slot lagi — daftar sekarang!</div>
+                <div className="text-[10px] font-semibold text-[#ffb794]">Hanya 3 slot lagi — daftar sekarang!</div>
               </div>
 
               {/* Deposit form */}
-              <div className="space-y-2 rounded-[10px] border border-[#2a2415] bg-[#1c1912] p-3">
-                <div className="text-xs font-bold uppercase text-[#F0C75E]">Deposit &amp; mulai profit</div>
+              <div className="space-y-2 rounded-[10px] border border-[#3a4d70] bg-[#14233f] p-3">
+                <div className="text-xs font-bold uppercase text-[#ff751f]">Deposit &amp; mulai profit</div>
                 <div className="space-y-1.5">
-                  <div className="flex items-center justify-between rounded-[6px] border border-[#2a2415] bg-[#14120c] px-3 py-2 text-xs text-[#8696a0]">
+                  <div className="flex items-center justify-between rounded-[6px] border border-[#3a4d70] bg-[#172640] px-3 py-2 text-xs text-[#9aa6bd]">
                     <span>Jumlah deposit</span>
-                    <span className="font-bold text-[#54d18a]">Rp 1.000.000</span>
+                    <span className="font-bold text-[#ffb794]">Rp 1.000.000</span>
                   </div>
-                  <div className="rounded-[6px] border border-[#2a2415] bg-[#14120c] px-3 py-2">
-                    <span className="block text-[10px] text-[#8696a0]">Transfer ke:</span>
-                    <span className="block font-mono text-[11px] font-bold text-[#54d18a]">Bank Digital: 7720-1123-991</span>
-                    <span className="block text-[10px] text-[#8696a0]">a.n Ahmad Penampung</span>
+                  <div className="rounded-[6px] border border-[#3a4d70] bg-[#172640] px-3 py-2">
+                    <span className="block text-[10px] text-[#9aa6bd]">Transfer ke:</span>
+                    <span className="block font-mono text-[11px] font-bold text-[#ffb794]">Bank Digital: 7720-1123-991</span>
+                    <span className="block text-[10px] text-[#9aa6bd]">a.n Ahmad Penampung</span>
                   </div>
-                  <div className="cursor-not-allowed rounded-[6px] bg-[#F0C75E] py-2 text-center text-xs font-extrabold text-[#14120c] opacity-80">
+                  <div className="cursor-not-allowed rounded-[6px] bg-[#ff751f] py-2 text-center text-xs font-extrabold text-[#172640] opacity-80">
                     DEPOSIT SEKARANG &rarr;
                   </div>
                 </div>
               </div>
 
               {/* Testimoni */}
-              <div className="space-y-2 rounded-[10px] border border-[#2a2415] bg-[#1c1912] p-3">
-                <div className="flex items-center gap-1 text-xs font-bold text-[#d1d7e0]">
-                  <Users className="h-3 w-3 text-[#F0C75E]" /> Testimoni member VIP
+              <div className="space-y-2 rounded-[10px] border border-[#3a4d70] bg-[#14233f] p-3">
+                <div className="flex items-center gap-1 text-xs font-bold text-[#c5cddc]">
+                  <Users className="h-3 w-3 text-[#ff751f]" /> Testimoni member VIP
                 </div>
                 {[
                   { name: 'A***i', text: 'Sudah profit Rp 15jt dalam 1 minggu!!' },
                   { name: 'D***a', text: 'Awalnya ragu, ternyata beneran cair!' },
                   { name: 'M***n', text: 'Platform terpercaya, CS ramah 24/7' },
                 ].map((t, i) => (
-                  <div key={i} className="space-y-0.5 rounded-[6px] bg-[#14120c] p-2">
+                  <div key={i} className="space-y-0.5 rounded-[6px] bg-[#172640] p-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-[#d1d7e0]">{t.name}</span>
+                      <span className="text-[10px] font-bold text-[#c5cddc]">{t.name}</span>
                       <div className="flex gap-0.5">
                         {Array.from({ length: 5 }).map((_, j) => (
-                          <Star key={j} className="h-2.5 w-2.5 fill-[#F0C75E] text-[#F0C75E]" />
+                          <Star key={j} className="h-2.5 w-2.5 fill-[#ff751f] text-[#ff751f]" />
                         ))}
                       </div>
                     </div>
-                    <div className="text-[10px] text-[#8696a0]">{t.text}</div>
+                    <div className="text-[10px] text-[#9aa6bd]">{t.text}</div>
                   </div>
                 ))}
-                <div className="text-center text-[9px] italic text-[#f2b8b5]">(Semua testimoni di atas adalah PALSU)</div>
+                <div className="text-center text-[9px] italic text-[#ffb794]">(Semua testimoni di atas adalah PALSU)</div>
               </div>
 
               {/* Founder */}
-              <div className="flex items-center gap-3 rounded-[10px] border border-[#2a2415] bg-[#1c1912] p-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#F0C75E]">
-                  <UserRound className="h-6 w-6 text-[#14120c]" />
+              <div className="flex items-center gap-3 rounded-[10px] border border-[#3a4d70] bg-[#14233f] p-3">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#ff751f]">
+                  <UserRound className="h-6 w-6 text-[#172640]" />
                 </span>
                 <div>
                   <div className="flex items-center gap-1 text-xs font-bold text-white">
                     Dr. Hendra Wijaya
-                    <CheckCircle2 className="h-3 w-3 text-[#4dd0c7]" />
+                    <CheckCircle2 className="h-3 w-3 text-[#f3f6fa]" />
                   </div>
-                  <div className="text-[10px] text-[#8696a0]">
+                  <div className="text-[10px] text-[#9aa6bd]">
                     Founder &amp; CEO — &quot;Analis Kripto Terverifikasi OJK&quot;
                   </div>
-                  <div className="text-[9px] font-bold text-[#f2b8b5]">(Identitas &amp; klaim = PALSU)</div>
+                  <div className="text-[9px] font-bold text-[#ffb794]">(Identitas &amp; klaim = PALSU)</div>
                 </div>
               </div>
             </div>
@@ -496,7 +496,7 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
                         isSelected
                           ? 'border-[var(--teal-deep)] bg-white text-[var(--teal-deep)] ring-1 ring-[var(--teal-deep)]'
                           : isDone
-                          ? 'border-[#b9dcd9] bg-[var(--teal-tint)] text-[var(--teal-deep)]'
+                          ? 'border-[#b6bfd2] bg-[var(--teal-tint)] text-[var(--teal-deep)]'
                           : 'border-[var(--line-strong)] bg-white text-[var(--ink-soft)] hover:border-[var(--ink)]'
                       }`}
                     >
@@ -515,7 +515,7 @@ export const BrowserInvestigatorModal: React.FC<BrowserInvestigatorModalProps> =
                           <CheckCircle2 className="h-2.5 w-2.5" /> SELESAI
                         </span>
                       ) : isScanning ? (
-                        <span className="rounded-full bg-[#ecd9a3] px-2 py-0.5 text-[9px] font-bold text-[#6d5410]">
+                        <span className="rounded-full bg-[#f7cbae] px-2 py-0.5 text-[9px] font-bold text-[#b04a00]">
                           SCANNING...
                         </span>
                       ) : (

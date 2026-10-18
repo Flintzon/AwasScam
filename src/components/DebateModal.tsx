@@ -25,7 +25,7 @@ export const DebateModal: React.FC<DebateModalProps> = ({
       case 'FileWarning':
         return <FileWarning className="h-6 w-6 text-[var(--red-deep)]" />;
       case 'Hourglass':
-        return <Hourglass className="h-6 w-6 text-[#6d5410]" />;
+        return <Hourglass className="h-6 w-6 text-[#b04a00]" />;
       default:
         return <ShieldCheck className="h-6 w-6 text-[var(--teal-deep)]" />;
     }
@@ -122,8 +122,8 @@ export const DebateModal: React.FC<DebateModalProps> = ({
           <div
             className={`fade-slide-up flex items-start gap-3 rounded-[10px] border p-4 ${
               feedback.isSuccess
-                ? 'border-[#b9dcd9] bg-[var(--teal-tint)]'
-                : 'border-[#f0c4c4] bg-[var(--red-tint)]'
+                ? 'border-[#b6bfd2] bg-[var(--teal-tint)]'
+                : 'border-[#f7cbae] bg-[var(--red-tint)]'
             }`}
           >
             {feedback.isSuccess ? (

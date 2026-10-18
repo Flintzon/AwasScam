@@ -14,7 +14,7 @@ web
 
 ## Product Purpose
 
-AWAS SCAM! adalah game edukasi web berbahasa Indonesia tentang mengenali penipuan digital dan mengambil keputusan yang lebih aman. Produk menyajikan skenario investigasi fiktif yang interaktif, menggabungkan literasi digital, storytelling detektif, dan pembelajaran berbasis pilihan. Sukses berarti pemain menyelesaikan kasus, mengenali red flag, dan keluar dengan pemahaman yang lebih baik — serta produk siap didemokan di kompetisi dengan mulus.
+AWAS KENA TIPU! adalah game edukasi web berbahasa Indonesia tentang mengenali penipuan digital dan mengambil keputusan yang lebih aman. Produk menyajikan skenario investigasi fiktif yang interaktif, menggabungkan literasi digital, storytelling detektif, dan pembelajaran berbasis pilihan. Sukses berarti pemain menyelesaikan kasus, mengenali red flag, dan keluar dengan pemahaman yang lebih baik — serta produk siap didemokan di kompetisi dengan mulus.
 
 ## Positioning
 
@@ -40,9 +40,9 @@ Mekanisme yang membedakan: tiga kasus fiktif dengan **mekanisme interaktif berbe
 
 ## Brand Commitments
 
-- Nama: **AWAS SCAM!**; tagline: **"Cek Dulu, Baru Klik!"**.
+- Nama: **AWAS KENA TIPU! : Misi Dana Pensiun**; tagline: **"Cek Dulu, Baru Klik!"**.
 - Kepribadian merek (dikunci pengguna lewat direction probe): **Editorial Digital Detective** — teliti, tenang, kredibel, ramah tanpa cerewet; rasa menyelidiki, bukan ketakutan; bukan dashboard keamanan/terminal/hacker/bank/enterprise, dan bukan komik neon.
-- **Palet merek (dikunci pengguna):** Ink Navy `#17243A`, Clean White `#FFFFFF`, Cool Mist `#F3F5F8`, Signal Teal `#168C87`, Alert Red `#D94B4B`, Evidence Yellow `#F0C75E` — palet cream/coral/detective-blue lama sudah pensiun. Warna gelap hanya di dalam artefak penipuan yang otentik.
+- **Palet merek (dikunci pengguna — triad 60-30-10):** Light `#F3F6FA` (60%), Ink Navy `#172640` (30%, teks/struktur/aman), Accent Orange `#FF751F` (10%, petunjuk/bahaya/CTA) + tint `#FFE8DB`/`#E3E8F1` dan deep `#B04A00` — cream/coral/detective-blue lama pensiun; teal/merah/kuninglebur ke triad. Warna gelap hanya di dalam artefak penipuan yang otentik.
 - Referensi terikat dari brief awal: filosofi dan rasa interaksi Duolingo (tanpa meniru mascot/branding-nya), petualangan detektif ilustrasi, visual novel berbasis pilihan, dan produk belajar tergamifikasi.
 - Aset harus **berlisensi jelas dan satu arah seni**; dilarang stok korporat generik, clip art murahan, ikon acak, dan gambar watermark. Preferensi pengguna: agent boleh mencari aset relevan di web.
 - Aset berlisensi yang sudah dipakai wajib dipertahankan atribusinya (lihat `docs/ASSET_CREDITS.md`: Newsreader & Public Sans OFL, lucide-react ISC, canvas-confetti ISC; maskot = karya orisinal).

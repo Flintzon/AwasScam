@@ -1,12 +1,15 @@
 'use client';
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Award, Compass, Sparkles } from 'lucide-react';
 import { SiteFrame } from '../../components/SiteChrome';
 import { CASES } from '../../data/cases';
+import { Mascot } from '../../components/Mascot';
 
 export default function Progress() {
   const [done, setDone] = useState<number[] | null>(null);
+
   useEffect(() => {
     let items: number[] = [];
     try {
@@ -29,121 +32,130 @@ export default function Progress() {
 
   return (
     <SiteFrame>
-      <section className="mx-auto max-w-3xl px-5 py-10 lg:px-8 lg:py-14">
-        <h1 className="text-[clamp(2rem,4vw,2.8rem)]">Progres investigasimu</h1>
-
-        {done === null ? null : finished.length === 0 ? (
-          <div className="mt-7">
-            <p className="max-w-[52ch] text-[1rem] leading-7 text-[var(--ink-muted)]">
-              Belum ada kasus yang selesai. Kasus pertama selesai dalam kurang dari 5 menit.
-            </p>
-            <Link href="/kasus/paket-misterius" className="btn btn-primary btn-lg mt-6">
-              Mulai Investigasi <ArrowRight size={17} />
-            </Link>
-          </div>
-        ) : (
-          <div className="mt-7">
-            <p className="text-[1.05rem] text-[var(--ink-soft)]">
-              <strong className="font-bold text-[var(--ink)]">
-                {finished.length} dari {CASES.length}
-              </strong>{' '}
-              kasus selesai.
-            </p>
-            <div className="meter mt-3 max-w-sm">
-              <span style={{ width: `${Math.round((finished.length / CASES.length) * 100)}%` }} />
+      <div className="py-12 lg:py-16 bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#FFFDF9]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          {/* Header Card */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#FFE8D6] shadow-[0_8px_30px_rgba(255,122,0,0.08)] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FEF3C7] border border-[#FDE68A] text-[#B45309] text-xs font-bold shadow-sm">
+                <Award size={15} />
+                <span>PENCAPAIAN DETEKTIF</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F1D38]">
+                Progres Investigasimu
+              </h1>
+              <p className="text-sm sm:text-base text-[#475569] max-w-xl">
+                Lacak kasus yang telah kamu selesaikan dan lihat kemampuan detektif yang sudah kamu kuasai.
+              </p>
             </div>
 
-            {next ? (
-              <Link href={`/kasus/${next.slug}`} className="btn btn-primary btn-lg mt-6">
-                Lanjutkan: {next.title} <ArrowRight size={17} />
-              </Link>
-            ) : (
-              <p className="mt-6 text-[0.95rem] text-[var(--ink-muted)]">
-                Semua kasus selesai.{' '}
-                <Link href="/kasus" className="link-underline font-bold text-[var(--teal-deep)] hover:text-[var(--ink)]">
-                  Lihat semua kasus.
+            <div className="shrink-0 w-24 h-24 sm:w-28 sm:h-28 relative">
+              <Mascot
+                name={finished.length > 0 ? '02_senang' : '04_berpikir'}
+                alt="Detektif Ciko"
+                width={112}
+                height={112}
+                animate="bounce"
+              />
+            </div>
+          </div>
+
+          {/* Progress Status */}
+          {done === null ? null : finished.length === 0 ? (
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#E2E8F0] text-center space-y-4">
+              <p className="text-base sm:text-lg font-bold text-[#0F1D38]">
+                Belum ada kasus yang selesai. Yuk mulai petualangan pertamamu!
+              </p>
+              <p className="text-sm text-[#64748B] max-w-md mx-auto">
+                Selesaikan kasus pertamamu hanya dalam 3-4 menit untuk membuka lencana detektif pemula.
+              </p>
+              <div>
+                <Link href="/kasus/paket-misterius" className="btn-pill-orange py-3 px-6 text-sm font-bold inline-flex items-center gap-2">
+                  <span>Mulai Kasus 01: Paket Misterius</span>
+                  <ArrowRight size={16} />
                 </Link>
-              </p>
-            )}
-          </div>
-        )}
-
-        {done !== null && (
-          <section className="mt-12 border-t border-[var(--line-strong)] pt-8" aria-labelledby="skills-heading">
-            <div className="max-w-[58ch]">
-              <p className="font-mono text-[0.74rem] font-semibold text-[var(--teal-deep)]">Peta kemampuan</p>
-              <h2 id="skills-heading" className="mt-1 text-[1.65rem]">
-                Yang sedang kamu latih
-              </h2>
-              <p className="mt-2 text-[0.94rem] leading-6 text-[var(--ink-muted)]">
-                Setiap kasus membuka latihan yang berbeda. Selesaikan kasus terkait untuk menandai kemampuan ini sebagai sudah dipraktikkan.
-              </p>
+              </div>
             </div>
+          ) : (
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#FFE8D6] shadow-sm space-y-5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-xs font-bold text-[#FF7A00] uppercase tracking-wider">Status Misi</span>
+                  <p className="text-xl font-bold text-[#0F1D38]">
+                    {finished.length} dari {CASES.length} Kasus Selesai
+                  </p>
+                </div>
+                <span className="text-2xl font-black text-[#FF7A00] font-mono">
+                  {Math.round((finished.length / CASES.length) * 100)}%
+                </span>
+              </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {skills.map(({ skill, caseId, caseTitle }) => {
-                const practiced = finished.includes(caseId);
-                const caseItem = CASES.find((item) => item.id === caseId);
-                return (
-                  <Link
-                    key={skill}
-                    href={caseItem ? `/kasus/${caseItem.slug}` : '/kasus'}
-                    className="card card-hover group flex min-h-[112px] flex-col justify-between p-4"
-                  >
-                    <div>
-                      <p className="font-semibold text-[var(--ink)]">{skill}</p>
-                      <p className="mt-1 text-[0.8rem] text-[var(--ink-muted)]">{caseTitle}</p>
-                    </div>
-                    <span
-                      className={`mt-3 flex items-center gap-1.5 text-[0.8rem] font-bold ${
-                        practiced ? 'text-[var(--teal-deep)]' : 'text-[var(--ink-muted)] group-hover:text-[var(--ink)]'
+              {/* Progress Bar */}
+              <div className="w-full h-4 bg-[#F1F5F9] rounded-full overflow-hidden p-0.5 border border-[#E2E8F0]">
+                <div
+                  className="h-full bg-gradient-to-r from-[#FF7A00] to-[#FACC15] rounded-full transition-all duration-500"
+                  style={{ width: `${Math.round((finished.length / CASES.length) * 100)}%` }}
+                />
+              </div>
+
+              {next ? (
+                <div className="pt-2">
+                  <Link href={`/kasus/${next.slug}`} className="btn-pill-orange text-sm py-2.5 px-6 font-bold inline-flex items-center gap-2">
+                    <span>Lanjutkan: {next.title}</span>
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              ) : (
+                <div className="p-4 bg-[#F0FDF4] rounded-2xl border border-[#86EFAC] text-[#166534] font-bold text-sm flex items-center gap-2">
+                  <Sparkles size={18} />
+                  <span>Hebat! Kamu telah menuntaskan seluruh berkas kasus! Kamu resmi menjadi Detektif Siber Keluarga Tangguh!</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Skills Map */}
+          {done !== null && (
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#E2E8F0] shadow-sm space-y-6">
+              <div>
+                <span className="text-xs font-bold text-[#0284C7] uppercase tracking-wider">Peta Keahlian</span>
+                <h2 className="text-xl font-bold text-[#0F1D38] mt-0.5">Kemampuan yang Kamu Latih</h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {skills.map(({ skill, caseId, caseTitle }) => {
+                  const practiced = finished.includes(caseId);
+                  const caseItem = CASES.find((item) => item.id === caseId);
+                  return (
+                    <Link
+                      key={skill}
+                      href={caseItem ? `/kasus/${caseItem.slug}` : '/kasus'}
+                      className={`p-4 rounded-2xl border-2 transition-all flex flex-col justify-between ${
+                        practiced
+                          ? 'bg-[#F0FDF4] border-[#86EFAC]'
+                          : 'bg-[#F8FAFC] border-[#E2E8F0] hover:border-[#FF7A00]'
                       }`}
                     >
-                      {practiced ? <Check size={14} strokeWidth={3} aria-hidden="true" /> : null}
-                      {practiced ? 'Sudah dipraktikkan' : 'Mulai latihan'}
-                    </span>
-                  </Link>
-                );
-              })}
+                      <div>
+                        <p className="font-bold text-sm text-[#0F1D38]">{skill}</p>
+                        <p className="text-xs text-[#64748B] mt-0.5">{caseTitle}</p>
+                      </div>
+                      <span
+                        className={`text-xs font-bold mt-3 flex items-center gap-1 ${
+                          practiced ? 'text-[#166534]' : 'text-[#94A3B8]'
+                        }`}
+                      >
+                        {practiced ? <Check size={14} className="text-[#22C55E]" /> : null}
+                        {practiced ? 'Sudah Dikuasai' : 'Mulai Latihan'}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </section>
-        )}
-
-        {done !== null && (
-          <div className="mt-10 border-t border-[var(--line-strong)] pt-2">
-            {CASES.map((item) => {
-              const isDone = finished.includes(item.id);
-              return (
-                <Link
-                  key={item.id}
-                  href={`/kasus/${item.slug}`}
-                  className="group flex items-center gap-4 border-b border-[var(--line)] py-4 transition-colors hover:bg-[var(--white)] sm:px-3"
-                >
-                  <span className="shrink-0 font-mono text-[0.78rem] text-[var(--ink-muted)]">
-                    {String(item.id).padStart(2, '0')}
-                  </span>
-                  <span className="min-w-0 flex-1 truncate text-[0.97rem] font-semibold text-[var(--ink)]">
-                    {item.title}
-                  </span>
-                  {isDone ? (
-                    <span className="flex shrink-0 items-center gap-1.5 text-[0.82rem] font-bold text-[var(--teal-deep)]">
-                      <Check size={14} strokeWidth={3} /> Selesai
-                    </span>
-                  ) : (
-                    <span className="shrink-0 text-[0.82rem] text-[var(--ink-muted)] transition-colors group-hover:text-[var(--ink)]">
-                      Belum
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        )}
-
-        <p className="mt-8 text-[0.84rem] text-[var(--ink-muted)]">
-          Progres tersimpan di perangkat ini saja. Tidak ada akun, tidak ada data yang dikirim ke mana pun.
-        </p>
-      </section>
+          )}
+        </div>
+      </div>
     </SiteFrame>
   );
 }

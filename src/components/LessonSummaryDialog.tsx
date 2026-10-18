@@ -18,10 +18,10 @@ export function LessonSummaryDialog({ caseTitle, skills }: LessonSummaryDialogPr
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-[rgba(23,36,58,0.62)] animate-rise" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-[rgba(23,38,64,0.62)] animate-rise" />
         <Dialog.Content
           aria-describedby="lesson-summary-description"
-          className="fixed left-1/2 top-1/2 z-50 max-h-[min(88vh,640px)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[10px] border border-[var(--line)] bg-[var(--white)] p-5 shadow-[0_18px_50px_rgba(23,36,58,0.24)] animate-pop sm:p-7"
+          className="fixed left-1/2 top-1/2 z-50 max-h-[min(88vh,640px)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[10px] border border-[var(--line)] bg-[var(--white)] p-5 shadow-[0_18px_50px_rgba(23,38,64,0.24)] animate-pop sm:p-7"
         >
           <div className="flex items-start justify-between gap-4 border-b border-[var(--line)] pb-4">
             <div>

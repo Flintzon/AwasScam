@@ -279,14 +279,14 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
         }`}
       >
         {/* Banner peringatan: tegas, tanpa kedip */}
-        <div className="flex items-start gap-3 rounded-[10px] border border-[#f0c4c4] bg-[var(--red-tint)] p-4">
+        <div className="flex items-start gap-3 rounded-[10px] border border-[#f7cbae] bg-[var(--red-tint)] p-4">
           <ShieldAlert className="mt-0.5 h-7 w-7 shrink-0 text-[var(--red-deep)]" />
           <div className="flex-1">
             <div className="flex items-center gap-2 text-[1.05rem] font-bold text-[var(--red-deep)]">
               <Zap className="h-4 w-4 shrink-0" />
               Darurat! APK terlanjur diinstal
             </div>
-            <div className="mt-0.5 text-xs font-medium leading-5 text-[#8a4141]">
+            <div className="mt-0.5 text-xs font-medium leading-5 text-[#b04a00]">
               Malware sedang mencoba membaca notifikasi SMS OTP. Jalankan 3 langkah tanggap darurat sekarang.
             </div>
           </div>
@@ -297,9 +297,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
           <div
             className={`flex items-center gap-2 rounded-[8px] border px-4 py-2 font-mono text-lg font-bold ${
               countdown <= 10
-                ? 'border-[#f0c4c4] bg-[var(--red-tint)] text-[var(--red-deep)]'
+                ? 'border-[#f7cbae] bg-[var(--red-tint)] text-[var(--red-deep)]'
                 : countdown <= 30
-                ? 'border-[#ecd9a3] bg-[var(--yellow-tint)] text-[#6d5410]'
+                ? 'border-[#f7cbae] bg-[var(--yellow-tint)] text-[#b04a00]'
                 : 'border-[var(--line-strong)] bg-[var(--white)] text-[var(--ink-soft)]'
             }`}
           >
@@ -326,9 +326,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
               onClick={() => !step.completed && !step.animating && handleExecute(step.id)}
               className={`cursor-pointer rounded-[10px] border p-4 transition-all duration-300 ${
                 step.completed
-                  ? 'border-[#b9dcd9] bg-[var(--teal-tint)]'
+                  ? 'border-[#b6bfd2] bg-[var(--teal-tint)]'
                   : step.animating
-                  ? 'border-[#ecd9a3] bg-[var(--yellow-tint)]'
+                  ? 'border-[#f7cbae] bg-[var(--yellow-tint)]'
                   : 'border-[var(--line-strong)] bg-[var(--white)] hover:border-[var(--ink)]'
               }`}
             >
@@ -337,9 +337,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
                   <span
                     className={`icon-tile shrink-0 ${
                       step.completed
-                        ? '!border-[#b9dcd9] !bg-white !text-[var(--teal-deep)]'
+                        ? '!border-[#b6bfd2] !bg-white !text-[var(--teal-deep)]'
                         : step.animating
-                        ? '!border-[#ecd9a3] !bg-white !text-[#6d5410]'
+                        ? '!border-[#f7cbae] !bg-white !text-[#b04a00]'
                         : '!bg-[var(--red-tint)] !text-[var(--red-deep)]'
                     }`}
                   >
@@ -378,7 +378,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
           {/* Opsi jebakan (salah) */}
           <div
             onClick={handleWrongTrap}
-            className="group flex cursor-pointer items-center justify-between gap-3 rounded-[10px] border border-dashed border-[#f0c4c4] bg-[var(--red-tint)] p-3.5 text-xs font-medium text-[var(--red-deep)] transition-colors hover:border-[var(--red)]"
+            className="group flex cursor-pointer items-center justify-between gap-3 rounded-[10px] border border-dashed border-[#f7cbae] bg-[var(--red-tint)] p-3.5 text-xs font-medium text-[var(--red-deep)] transition-colors hover:border-[var(--red)]"
           >
             <span className="flex items-center gap-2">
               <X size={14} className="shrink-0" />
@@ -390,7 +390,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ onMitigationSucc
 
         {/* Feedback */}
         {feedback && (
-          <div className="animate-shake flex items-center justify-center gap-2 rounded-[10px] border border-[#f0c4c4] bg-[var(--red-tint)] p-3.5 text-center text-xs font-bold text-[var(--red-deep)] md:text-sm">
+          <div className="animate-shake flex items-center justify-center gap-2 rounded-[10px] border border-[#f7cbae] bg-[var(--red-tint)] p-3.5 text-center text-xs font-bold text-[var(--red-deep)] md:text-sm">
             <Mascot name="alert" alt="" className="h-7 w-7 shrink-0" />
             {feedback}
           </div>

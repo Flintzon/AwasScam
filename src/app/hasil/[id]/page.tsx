@@ -28,7 +28,7 @@ export default function Results({ params }: { params: Promise<{ id: string }> })
       spread: 60,
       startVelocity: 32,
       origin: { y: 0.6 },
-      colors: ['#168C87', '#F0C75E', '#17243A', '#FFFFFF'],
+      colors: ['#f3f6fa', '#ff751f', '#172640', '#FFFFFF'],
       disableForReducedMotion: true,
     });
   }, []);

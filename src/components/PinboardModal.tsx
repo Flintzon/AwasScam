@@ -46,8 +46,8 @@ export const PinboardModal: React.FC<PinboardModalProps> = ({
       id: 'social_eng',
       title: 'Manipulasi psikologis',
       subtitle: 'Pemicu panik, rasa takut, & iming-iming keserakahan',
-      border: 'border-[#E0B84A]',
-      icon: <Brain className="h-5 w-5 text-[#6d5410]" />,
+      border: 'border-[#e05f08]',
+      icon: <Brain className="h-5 w-5 text-[#b04a00]" />,
     },
     {
       id: 'impersonation',
@@ -203,8 +203,8 @@ export const PinboardModal: React.FC<PinboardModalProps> = ({
             <div
               className={`fade-slide-up rounded-[10px] border p-3 text-center text-xs font-bold md:text-sm ${
                 feedbackOk
-                  ? 'border-[#b9dcd9] bg-[var(--teal-tint)] text-[var(--teal-deep)]'
-                  : 'border-[#f0c4c4] bg-[var(--red-tint)] text-[var(--red-deep)]'
+                  ? 'border-[#b6bfd2] bg-[var(--teal-tint)] text-[var(--teal-deep)]'
+                  : 'border-[#f7cbae] bg-[var(--red-tint)] text-[var(--red-deep)]'
               }`}
             >
               {feedback}
@@ -234,13 +234,13 @@ export const PinboardModal: React.FC<PinboardModalProps> = ({
                       {placedClues.map((clue) => (
                         <div
                           key={clue.id}
-                          className="fade-slide-up rounded-[8px] border border-[#b9dcd9] bg-[var(--teal-tint)] p-2.5 text-xs"
+                          className="fade-slide-up rounded-[8px] border border-[#b6bfd2] bg-[var(--teal-tint)] p-2.5 text-xs"
                         >
                           <div className="mb-0.5 flex items-center justify-between font-bold text-[var(--teal-deep)]">
                             <span className="flex items-center gap-1">
                               <Check className="h-3 w-3 stroke-[3]" /> {clue.title}
                             </span>
-                            <span className="rounded border border-[#b9dcd9] bg-white px-1.5 py-0.5 text-[9px]">
+                            <span className="rounded border border-[#b6bfd2] bg-white px-1.5 py-0.5 text-[9px]">
                               TERPIN
                             </span>
                           </div>

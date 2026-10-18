@@ -214,14 +214,14 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
 
       {/* OTP Shield banner */}
       {showOtpShield && (
-        <div className="fade-slide-up fixed left-0 right-0 top-0 z-[90] border-b border-[#b9dcd9] bg-[var(--teal-tint)]">
+        <div className="fade-slide-up fixed left-0 right-0 top-0 z-[90] border-b border-[#b6bfd2] bg-[var(--teal-tint)]">
           <div className="flex items-center justify-center gap-3 px-6 py-3.5 text-center">
             <Shield className="h-6 w-6 shrink-0 text-[var(--teal-deep)]" />
             <div>
               <div className="text-base font-bold text-[var(--teal-deep)] md:text-lg">
                 OTP Shield aktif
               </div>
-              <div className="text-xs font-medium text-[#0b5450]">
+              <div className="text-xs font-medium text-[#172640]">
                 Kode OTP adalah rahasia mutlak — tidak pernah diminta oleh pihak bank mana pun.
               </div>
             </div>
@@ -249,11 +249,11 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                     847 291
                   </span>
                 </p>
-                <div className="mt-2 rounded-[8px] border border-[#f0c4c4] bg-[var(--red-tint)] px-3 py-1.5">
+                <div className="mt-2 rounded-[8px] border border-[#f7cbae] bg-[var(--red-tint)] px-3 py-1.5">
                   <p className="text-xs font-bold text-[var(--red-deep)]">
                     Jangan berikan kode ini kepada siapa pun
                   </p>
-                  <p className="mt-0.5 text-[10px] font-medium text-[#8a4141]">
+                  <p className="mt-0.5 text-[10px] font-medium text-[#b04a00]">
                     Petugas bank TIDAK PERNAH meminta kode OTP
                   </p>
                 </div>
@@ -299,10 +299,10 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
         <div className="grid flex-1 grid-cols-1 overflow-hidden lg:grid-cols-12">
 
           {/* KIRI: layar panggilan (artefak gelap otentik) */}
-          <div className="overflow-y-auto border-b border-[#22304a] bg-[#0e1626] p-4 md:p-6 lg:col-span-5 lg:border-b-0 lg:border-r">
+          <div className="overflow-y-auto border-b border-[#2c3d5c] bg-[#101c33] p-4 md:p-6 lg:col-span-5 lg:border-b-0 lg:border-r">
             <div className="mx-auto w-full max-w-xs">
               {/* Status bar */}
-              <div className="mb-3 flex items-center justify-between px-1 text-[10px] font-semibold text-[#8696a0]">
+              <div className="mb-3 flex items-center justify-between px-1 text-[10px] font-semibold text-[#9aa6bd]">
                 <span>17:42</span>
                 <div className="flex items-center gap-1.5">
                   <Signal className="h-3 w-3" />
@@ -313,7 +313,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
 
               {/* Avatar panggilan */}
               <div className="relative mx-auto mb-4 mt-2 h-24 w-24">
-                <div className="flex h-full w-full items-center justify-center rounded-full border-4 border-[#168C87]/50 bg-[var(--teal-deep)]">
+                <div className="flex h-full w-full items-center justify-center rounded-full border-4 border-[#f3f6fa]/50 bg-[var(--teal-deep)]">
                   <PhoneCall className="h-10 w-10 text-white" />
                 </div>
                 <span className="absolute right-1 top-1 h-4 w-4 animate-pulse rounded-full border-2 border-white bg-[var(--teal)]" />
@@ -322,14 +322,14 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
               {/* Info kontak */}
               <div className="mb-4 text-center">
                 <div className="text-lg font-bold text-white">&quot;HaloBCA&quot;</div>
-                <div className="text-xs font-medium text-[#8696a0]">Customer Service (?)</div>
-                <div className="mt-1 font-mono text-sm font-semibold tracking-wide text-[#4dd0c7]">
+                <div className="text-xs font-medium text-[#9aa6bd]">Customer Service (?)</div>
+                <div className="mt-1 font-mono text-sm font-semibold tracking-wide text-[#f3f6fa]">
                   {formatTime(callDuration)}
                 </div>
               </div>
 
               {/* Waveform */}
-              <div className="mb-4 rounded-[10px] border border-[#22304a] bg-black/50 p-3">
+              <div className="mb-4 rounded-[10px] border border-[#2c3d5c] bg-black/50 p-3">
                 <div className="flex h-16 items-end justify-center gap-[3px]">
                   {getWaveBars().map((height, i) => (
                     <div
@@ -337,7 +337,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                       className="w-[6px] rounded-full transition-all duration-100"
                       style={{
                         height: `${height}%`,
-                        background: isTalking ? '#168C87' : '#334155',
+                        background: isTalking ? '#f3f6fa' : '#2c3d5c',
                         opacity: isTalking
                           ? 0.75 + Math.abs(Math.sin((wavePhase + i * 15) * (Math.PI / 180))) * 0.25
                           : 0.35,
@@ -345,7 +345,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                     />
                   ))}
                 </div>
-                <div className="mt-2 text-center text-[10px] font-semibold text-[#8696a0]">
+                <div className="mt-2 text-center text-[10px] font-semibold text-[#9aa6bd]">
                   {isTalking ? 'Penipu sedang berbicara...' : 'Jeda...'}
                 </div>
               </div>
@@ -355,14 +355,14 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                 onClick={handleAnalyzePrefix}
                 className={`mb-4 cursor-pointer rounded-[10px] border p-3 transition-all duration-300 ${
                   analyzedPrefix
-                    ? 'border-[#D94B4B] bg-[#1d1216]'
-                    : 'border-dashed border-[#F0C75E] bg-[#131d2e] hover:bg-[#182335]'
+                    ? 'border-[#ff751f] bg-[#1b2b4a]'
+                    : 'border-dashed border-[#ff751f] bg-[#14233f] hover:bg-[#1d3054]'
                 }`}
               >
                 {!analyzedPrefix ? (
                   <div className="text-center">
-                    <Search className="mx-auto mb-1 h-5 w-5 text-[#f0c75e]" />
-                    <div className="mb-2 text-xs font-bold text-[#f0c75e]">
+                    <Search className="mx-auto mb-1 h-5 w-5 text-[#ff751f]" />
+                    <div className="mb-2 text-xs font-bold text-[#ff751f]">
                       Klik untuk analisis Caller ID
                     </div>
                     <div className="font-mono text-base font-bold tracking-widest text-white">
@@ -371,30 +371,30 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <div className="text-center text-[10px] font-bold uppercase tracking-wider text-[#f2b8b5]">
+                    <div className="text-center text-[10px] font-bold uppercase tracking-wider text-[#ffb794]">
                       Perbandingan Caller ID
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="rounded-[8px] border border-[#D94B4B] bg-[#241417] p-2 text-center">
-                        <div className="mb-1 flex items-center justify-center gap-1 text-[9px] font-bold uppercase text-[#f2b8b5]">
+                      <div className="rounded-[8px] border border-[#ff751f] bg-[#1b2b4a] p-2 text-center">
+                        <div className="mb-1 flex items-center justify-center gap-1 text-[9px] font-bold uppercase text-[#ffb794]">
                           <UserX className="h-3 w-3" /> Nomor mereka
                         </div>
-                        <div className="font-mono text-xs font-bold text-[#f2b8b5]">+62 821-xxxx</div>
-                        <div className="mt-0.5 flex items-center justify-center gap-1 text-[8px] font-bold text-[#f2b8b5]">
+                        <div className="font-mono text-xs font-bold text-[#ffb794]">+62 821-xxxx</div>
+                        <div className="mt-0.5 flex items-center justify-center gap-1 text-[8px] font-bold text-[#ffb794]">
                           <X className="h-2.5 w-2.5" /> HP biasa
                         </div>
                       </div>
-                      <div className="rounded-[8px] border border-[#168C87] bg-[#0f2523] p-2 text-center">
-                        <div className="mb-1 flex items-center justify-center gap-1 text-[9px] font-bold uppercase text-[#4dd0c7]">
+                      <div className="rounded-[8px] border border-[#f3f6fa] bg-[#1b2b4a] p-2 text-center">
+                        <div className="mb-1 flex items-center justify-center gap-1 text-[9px] font-bold uppercase text-[#f3f6fa]">
                           <ShieldCheck className="h-3 w-3" /> HaloBCA asli
                         </div>
-                        <div className="font-mono text-xs font-bold text-[#4dd0c7]">1500888</div>
-                        <div className="mt-0.5 flex items-center justify-center gap-1 text-[8px] font-bold text-[#4dd0c7]">
+                        <div className="font-mono text-xs font-bold text-[#f3f6fa]">1500888</div>
+                        <div className="mt-0.5 flex items-center justify-center gap-1 text-[8px] font-bold text-[#f3f6fa]">
                           <Check className="h-2.5 w-2.5" /> 5&ndash;7 digit
                         </div>
                       </div>
                     </div>
-                    <div className="text-center text-[10px] font-bold text-[#f2b8b5]">
+                    <div className="text-center text-[10px] font-bold text-[#ffb794]">
                       CS bank resmi wajib pakai nomor 5&ndash;7 digit!
                     </div>
                   </div>
@@ -402,30 +402,30 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
               </div>
 
               {/* Kata-kata penipu */}
-              <div className="mb-4 rounded-[10px] border border-[#22304a] bg-[#131d2e] p-3">
-                <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase text-[#f2b8b5]">
+              <div className="mb-4 rounded-[10px] border border-[#2c3d5c] bg-[#14233f] p-3">
+                <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase text-[#ffb794]">
                   <AlertTriangle className="h-3 w-3" /> Kata-kata penipu
                 </div>
-                <p className="text-xs font-semibold italic leading-relaxed text-[#d1d7e0]">
+                <p className="text-xs font-semibold italic leading-relaxed text-[#c5cddc]">
                   {getCurrentDialogue()}
                 </p>
               </div>
 
               {/* Meter kepanikan penipu */}
-              <div className="mb-4 rounded-[10px] border border-[#22304a] bg-black/50 p-3">
+              <div className="mb-4 rounded-[10px] border border-[#2c3d5c] bg-black/50 p-3">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#4dd0c7]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#f3f6fa]">
                     Kepanikan penipu
                   </span>
                   <span className="text-xs font-bold text-white">{panicPercent}%</span>
                 </div>
-                <div className="h-3 overflow-hidden rounded-full border border-[#22304a] bg-[#1a2536]">
+                <div className="h-3 overflow-hidden rounded-full border border-[#2c3d5c] bg-[#14233f]">
                   <div
                     className="h-full rounded-full transition-all duration-700 ease-out"
-                    style={{ width: `${panicPercent}%`, background: panicPercent >= 55 ? '#D94B4B' : '#168C87' }}
+                    style={{ width: `${panicPercent}%`, background: panicPercent >= 55 ? '#ff751f' : '#f3f6fa' }}
                   />
                 </div>
-                <div className="mt-1.5 text-center text-xs font-semibold text-[#8696a0]">
+                <div className="mt-1.5 text-center text-xs font-semibold text-[#9aa6bd]">
                   {getPanicLabel()}
                 </div>
               </div>
@@ -480,7 +480,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                   onClick={() => handleAskQuestion(q.id)}
                   className={`group cursor-pointer rounded-[10px] border p-3 transition-all duration-200 ${
                     q.isAsked
-                      ? 'border-[#b9dcd9] bg-[var(--teal-tint)]'
+                      ? 'border-[#b6bfd2] bg-[var(--teal-tint)]'
                       : 'border-[var(--line-strong)] bg-[var(--white)] hover:border-[var(--ink)]'
                   }`}
                 >
@@ -520,7 +520,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
             <div className="min-h-[140px] flex-1 rounded-[10px] border border-[var(--line)] bg-[var(--white)] p-4">
               {activeQuestion ? (
                 <div className="space-y-3">
-                  <div className="rounded-[8px] border border-[#f0c4c4] bg-[var(--red-tint)] p-3">
+                  <div className="rounded-[8px] border border-[#f7cbae] bg-[var(--red-tint)] p-3">
                     <div className="mb-1.5 flex items-center gap-1.5">
                       <UserX className="h-3.5 w-3.5 text-[var(--red-deep)]" />
                       <span className="text-[10px] font-bold uppercase text-[var(--red-deep)]">
@@ -532,7 +532,7 @@ export const CallSimulatorModal: React.FC<CallSimulatorModalProps> = ({
                     </p>
                   </div>
 
-                  <div className="rounded-[8px] border border-[#b9dcd9] bg-[var(--teal-tint)] p-3">
+                  <div className="rounded-[8px] border border-[#b6bfd2] bg-[var(--teal-tint)] p-3">
                     <div className="mb-1.5 flex items-center gap-1.5">
                       <ShieldCheck className="h-3.5 w-3.5 text-[var(--teal-deep)]" />
                       <span className="text-[10px] font-bold uppercase text-[var(--teal-deep)]">

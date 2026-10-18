@@ -1,114 +1,162 @@
 'use client';
+
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import {
+  Compass,
+  BookOpen,
+  Award,
+  Sparkles,
+  Menu,
+  X,
+  ShieldCheck,
+  ChevronRight,
+  Heart,
+  HelpCircle,
+  ExternalLink,
+} from 'lucide-react';
+import { Mascot } from './Mascot';
 
-const links = [
-  { href: '/kasus', label: 'Kasus' },
-  { href: '/panduan', label: 'Panduan' },
-  { href: '/progres', label: 'Progres' },
+const NAV_LINKS = [
+  { href: '/kasus', label: 'Simulasi Kasus', icon: Compass, badge: '4 Kasus' },
+  { href: '/#jalur-modus', label: 'Jalur Modus', icon: Sparkles },
+  { href: '/#tes-insting', label: 'Tes Insting', icon: HelpCircle },
+  { href: '/#kamus-saku', label: 'Kamus Saku', icon: BookOpen },
+  { href: '/panduan', label: 'Panduan', icon: BookOpen },
+  { href: '/progres', label: 'Progres', icon: Award },
 ];
-
-function isActive(path: string, href: string) {
-  return href === '/kasus' ? path === '/kasus' || path.startsWith('/kasus/') || path.startsWith('/main/') || path.startsWith('/hasil/') : path === href;
-}
 
 export function SiteHeader() {
   const path = usePathname();
-  const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--white)] shadow-[0_1px_3px_rgba(23,36,58,0.04)]">
-      <div className="mx-auto flex h-[62px] max-w-6xl items-center justify-between gap-3 px-4 sm:px-5 lg:px-8">
-        <Link href="/" className="group flex items-center gap-2.5 min-w-0">
-          <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-[8px] border border-[var(--line-strong)] bg-[var(--ink)] text-[var(--white)] shadow-sm transition-transform group-hover:scale-105">
-            <svg
-              className="h-4.5 w-4.5 text-[var(--yellow)]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m21 21-4.35-4.35" />
-              <path d="M11 8v3" stroke="#D94B4B" strokeWidth="2.5" />
-              <circle cx="11" cy="14" r="0.6" fill="#D94B4B" />
-            </svg>
-          </span>
-          <div className="flex flex-col min-w-0">
-            <span className="font-serif text-[1.2rem] font-bold leading-none tracking-tight text-[var(--ink)] sm:text-[1.32rem]">
-              AWAS&nbsp;SCAM<span className="text-[var(--teal-deep)]">!</span>
-            </span>
-            <span className="text-[0.62rem] font-semibold tracking-wider uppercase text-[var(--ink-muted)] sm:text-[0.68rem]">
-              Detektif Digital
-            </span>
+    <header className="sticky top-3 z-50 px-3 sm:px-6 w-full max-w-6xl mx-auto transition-all">
+      <div className="bg-white/95 backdrop-blur-md border-2 border-[#FFE8D6] rounded-full shadow-[0_8px_30px_rgba(255,122,0,0.12)] px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+        {/* Brand Logo & Name */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 group focus:outline-none"
+          aria-label="Kembali ke Beranda AWAS SCAM!"
+        >
+          <div className="relative h-10 w-28 sm:h-11 sm:w-32 transition-transform duration-200 group-hover:scale-105">
+            <Image
+              src="/logo.png"
+              alt="Logo AWAS SCAM!"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </div>
+          <span className="hidden xl:inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#B45309] border border-[#FDE68A]">
+            Edisi Keluarga 🇮🇩
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Navigasi utama">
-          {links.map((link) => {
-            const active = isActive(path, link.href);
+        {/* Desktop Nav Items */}
+        <nav className="hidden lg:flex items-center gap-1.5" aria-label="Navigasi Utama">
+          {NAV_LINKS.slice(0, 4).map((link) => {
+            const Icon = link.icon;
+            const isKasus = link.href === '/kasus' && (path.startsWith('/kasus') || path.startsWith('/main'));
+            const isCurrent = path === link.href || isKasus;
+
             return (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
-                aria-current={active ? 'page' : undefined}
-                className={`relative px-3.5 py-2 text-[0.92rem] font-semibold transition-colors ${
-                  active
-                    ? 'text-[var(--ink)] font-bold'
-                    : 'text-[var(--ink-muted)] hover:text-[var(--ink)]'
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[0.92rem] font-bold transition-all ${
+                  isCurrent
+                    ? 'bg-[#E0F2FE] text-[#0369A1] shadow-sm'
+                    : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF7A00]'
                 }`}
               >
-                {link.label}
-                {active && (
-                  <span
-                    className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] rounded-full bg-[var(--teal-deep)]"
-                    aria-hidden="true"
-                  />
-                )}
+                <Icon size={16} className={isCurrent ? 'text-[#0284C7]' : 'text-[#64748B]'} />
+                <span>{link.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            className="grid h-9 w-9 place-items-center rounded-[8px] border border-[var(--line-strong)] bg-[var(--white)] text-[var(--ink)] hover:bg-[var(--mist)] md:hidden"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? 'Tutup menu' : 'Buka menu'}
-            aria-expanded={open}
+        {/* CTA & Mobile Toggle */}
+        <div className="flex items-center gap-2">
+          <Link
+            href="/kasus/paket-misterius"
+            className="btn-pill-orange text-sm sm:text-base py-2 px-4 sm:px-5 inline-flex items-center gap-2 font-bold"
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
+            <span>Mulai Misi</span>
+            <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-full border border-[#E2E8F0] text-[#1E293B] hover:bg-[#F8FAFC] transition-colors"
+            aria-label={mobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
-      {open && (
-        <nav className="animate-rise border-t border-[var(--line)] bg-[var(--white)] px-5 py-3 md:hidden shadow-lg" aria-label="Navigasi mobile">
-          <div className="space-y-1">
-            {links.map((link) => {
-              const active = isActive(path, link.href);
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden mt-2 bg-white rounded-3xl border-2 border-[#FFE8D6] shadow-[0_15px_40px_rgba(255,122,0,0.18)] p-5 animate-pop-in">
+          <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
+            <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-full bg-[#FEF3C7] p-1 flex items-center justify-center border border-[#FDE68A]">
+                <Mascot name="senang" alt="Detektif Ciko" width={34} height={34} />
+              </div>
+              <div>
+                <p className="font-bold text-sm text-[#0F1D38]">Detektif Ciko</p>
+                <p className="text-xs text-[#64748B]">Mau belajar apa hari ini?</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-1.5 text-gray-400 hover:text-gray-700"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <nav className="mt-3 space-y-1.5">
+            {NAV_LINKS.map((link) => {
+              const Icon = link.icon;
               return (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  aria-current={active ? 'page' : undefined}
-                  className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[0.96rem] font-semibold transition-colors ${
-                    active
-                      ? 'bg-[var(--teal-tint)] text-[var(--teal-deep)] font-bold'
-                      : 'text-[var(--ink-soft)] hover:bg-[var(--mist)] hover:text-[var(--ink)]'
-                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-4 py-3 rounded-2xl text-[0.95rem] font-bold text-[#1E293B] hover:bg-[#FFF7ED] hover:text-[#FF7A00] transition-colors"
                 >
-                  <span>{link.label}</span>
-                  {active && <span className="h-2 w-2 rounded-full bg-[var(--teal-deep)]" />}
+                  <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#FFF7ED] text-[#FF7A00] flex items-center justify-center">
+                      <Icon size={17} />
+                    </span>
+                    <span>{link.label}</span>
+                  </div>
+                  {link.badge && (
+                    <span className="text-xs bg-[#FEF3C7] text-[#B45309] font-bold px-2 py-0.5 rounded-full">
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
+          </nav>
+
+          <div className="mt-4 pt-3 border-t border-[#F1F5F9]">
+            <Link
+              href="/kasus/paket-misterius"
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-pill-orange w-full justify-center text-center font-bold"
+            >
+              Mulai Petualangan Misi 1 🚀
+            </Link>
           </div>
-        </nav>
+        </div>
       )}
     </header>
   );
@@ -116,48 +164,141 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-[var(--line)] bg-[var(--white)] px-5 py-10 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-md">
-            <Link href="/" className="inline-flex items-center gap-2 font-serif text-[1.25rem] font-bold text-[var(--ink)]">
-              AWAS SCAM<span className="text-[var(--teal-deep)]">!</span>
-            </Link>
-            <p className="mt-2 text-[0.9rem] leading-6 text-[var(--ink-muted)]">
-              Game edukasi berbasis investigasi interaktif untuk mengenali modus penipuan digital di Indonesia.
-              Kembangkan naluri kritis sebelum mengambil keputusan di dunia maya.
-            </p>
-            <p className="mt-3 text-[0.82rem] font-medium text-[var(--ink-soft)]">
-              Dikembangkan oleh Cyber Defense Studios
-            </p>
-          </div>
-          <div className="flex flex-col gap-3">
-            <span className="text-[0.78rem] font-bold tracking-wider uppercase text-[var(--ink-muted)]">
-              Navigasi Halaman
-            </span>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[0.9rem] font-semibold text-[var(--ink-soft)]">
-              <Link href="/kasus" className="hover:text-[var(--teal-deep)] transition-colors">
-                Berkas Kasus
-              </Link>
-              <Link href="/panduan" className="hover:text-[var(--teal-deep)] transition-colors">
-                Panduan Literasi
-              </Link>
-              <Link href="/progres" className="hover:text-[var(--teal-deep)] transition-colors">
-                Progres Belajar
-              </Link>
-              <Link href="/tentang" className="hover:text-[var(--teal-deep)] transition-colors">
-                Tentang & Kredit
-              </Link>
+    <footer className="mt-auto border-t-2 border-[#FDE68A]/60 bg-gradient-to-b from-[#FFFDF9] to-[#FEF9EF] pt-14 pb-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Friendly Advice Banner */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#FFE4C4] shadow-[0_8px_30px_rgba(255,122,0,0.08)] mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 relative">
+              <Mascot
+                name="02_senang"
+                alt="Detektif Ciko tersenyum ramah"
+                width={96}
+                height={96}
+                animate="bounce"
+              />
+            </div>
+            <div>
+              <span className="badge-friendly bg-[#FEF3C7] text-[#B45309] border border-[#FDE68A] text-xs">
+                Pesan Hangat Detektif Ciko 🦉
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0F1D38] mt-1">
+                Keluarga yang Melek Digital, Bebas dari Tipu Daya!
+              </h3>
+              <p className="text-[#475569] text-sm sm:text-base mt-1.5 max-w-xl">
+                Penipu mengincar rasa panik dan kelengahan kita. Bagikan tips di website ini ke WhatsApp keluarga, grup bapak-bapak, dan ibu-ibu pengajian tercinta.
+              </p>
             </div>
           </div>
+          <Link
+            href="/kasus/paket-misterius"
+            className="btn-pill-orange shrink-0 px-6 py-3 text-base font-bold whitespace-nowrap"
+          >
+            Latih Nalurimu Sekarang ✨
+          </Link>
         </div>
-        <div className="mt-8 flex flex-col gap-2 border-t border-[var(--line)] pt-5 text-[0.82rem] text-[var(--ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            Semua skenario, nama tokoh, institusi, dan nomor telepon fiktif untuk tujuan simulasi edukasi.
-          </p>
-          <p className="shrink-0">
-            100% Berjalan di browser · Bebas pelacak
-          </p>
+
+        {/* Main Footer Links */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#E2E8F0]">
+          {/* Logo & Vision */}
+          <div className="md:col-span-2 space-y-3">
+            <div className="relative h-12 w-36">
+              <Image
+                src="/logo.png"
+                alt="Logo AWAS SCAM!"
+                fill
+                className="object-contain object-left"
+              />
+            </div>
+            <p className="text-[#475569] text-sm leading-relaxed max-w-md">
+              Platform edukasi interaktif dan gamifikasi keamanan digital publik yang ramah pengguna awam di Indonesia. Belajar mengenali berbagai modus scam dengan cara yang asyik, santai, dan tanpa beban.
+            </p>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#0F1D38]">
+              <ShieldCheck size={16} className="text-[#22C55E]" />
+              <span>100% Gratis · Berjalan di Peramban · Tanpa Pasang Aplikasi Luar</span>
+            </div>
+          </div>
+
+          {/* Quick Menu */}
+          <div>
+            <h4 className="font-bold text-[#0F1D38] text-base mb-3 font-heading">
+              Jelajahi Misi
+            </h4>
+            <ul className="space-y-2 text-sm font-semibold text-[#475569]">
+              <li>
+                <Link href="/kasus" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Daftar Berkas Kasus
+                </Link>
+              </li>
+              <li>
+                <Link href="/kasus/paket-misterius" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Kasus 01: Paket Kurir APK
+                </Link>
+              </li>
+              <li>
+                <Link href="/kasus/cs-bank-gadungan" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Kasus 02: Panggilan CS Bank
+                </Link>
+              </li>
+              <li>
+                <Link href="/kasus/freelance-kripto" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Kasus 03: Tawaran Freelance & Kripto
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Literacy & Guide */}
+          <div>
+            <h4 className="font-bold text-[#0F1D38] text-base mb-3 font-heading">
+              Edukasi & Bantuan
+            </h4>
+            <ul className="space-y-2 text-sm font-semibold text-[#475569]">
+              <li>
+                <Link href="/panduan" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Panduan Literasi Keamanan
+                </Link>
+              </li>
+              <li>
+                <Link href="/progres" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Pencapaian & Lencana
+                </Link>
+              </li>
+              <li>
+                <Link href="/tentang" className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5">
+                  <ChevronRight size={14} className="text-[#FF7A00]" />
+                  Tentang Inisiatif Ini
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://cekrekening.id"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#FF7A00] transition-colors flex items-center gap-1.5 text-xs text-[#0284C7]"
+                >
+                  <ExternalLink size={13} />
+                  Cek Rekening Resmi Kominfo
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Credits & Heart */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748B]">
+          <p>© {new Date().getFullYear()} AWAS SCAM! — Inisiatif Literasi Digital Ramah Keluarga.</p>
+          <div className="flex items-center gap-1.5">
+            <span>Dibuat dengan</span>
+            <Heart size={14} className="text-[#EF4444] fill-[#EF4444]" />
+            <span>untuk melindungi masyarakat Indonesia dari kejahatan siber.</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -166,9 +307,9 @@ export function SiteFooter() {
 
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="site-shell flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#FFFDF9] selection:bg-[#FED7AA]">
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 w-full">{children}</main>
       <SiteFooter />
     </div>
   );
