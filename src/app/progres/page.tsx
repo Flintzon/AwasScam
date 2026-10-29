@@ -99,7 +99,7 @@ export default function ProgressPage() {
                 </p>
                 <div className="pt-1">
                   <span className={`text-xs font-bold px-3.5 py-1 rounded-full border ${badgeColor}`}>
-                    Status: {awarenessLevel} 🛡️
+                    Status: {awarenessLevel}
                   </span>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function ProgressPage() {
                             : 'bg-[#F8FAFC] text-[#94A3B8] border-[#E2E8F0]'
                         }`}
                       >
-                        {isDone ? 'TERBONGKAR! ✅' : 'BELUM DISELIDIKI'}
+                        {isDone ? 'TERBONGKAR!' : 'BELUM DISELIDIKI'}
                       </span>
 
                       <Link

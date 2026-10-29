@@ -81,7 +81,7 @@ export default function GuidePage() {
     {
       key: 'phishing',
       term: 'Phishing',
-      awamTitle: 'Umpan Pancingan Pencuri Data 🎣',
+      awamTitle: 'Umpan Pancingan Pencuri Data',
       icon: Fish,
       summary:
         'Situs web atau pesan tiruan yang menyamar sebagai instansi resmi untuk memancingmu mengetikkan nomor kartu, PIN, atau kata sandi.',
@@ -90,7 +90,7 @@ export default function GuidePage() {
     {
       key: 'apk',
       term: 'File .APK',
-      awamTitle: 'Aplikasi Penyusup Penguras Saldo 📱',
+      awamTitle: 'Aplikasi Penyusup Penguras Saldo',
       icon: FileCode2,
       summary:
         'Format berkas aplikasi sistem Android. Jika dipasang dari chat, malware ini bisa membaca semua SMS masuk dan meneruskan kode OTP bank ke penipu.',
@@ -99,7 +99,7 @@ export default function GuidePage() {
     {
       key: 'otp',
       term: 'Kode OTP (One-Time Password)',
-      awamTitle: 'Kunci Rahasia Brankas Keramat 🔑',
+      awamTitle: 'Kunci Rahasia Brankas Keramat',
       icon: KeyRound,
       summary:
         'Kode 6 angka yang dikirim lewat SMS sebagai persetujuan transaksi uang. Siapapun yang memintanya, dia adalah pencuri saldo!',
@@ -169,7 +169,7 @@ export default function GuidePage() {
                       : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
-                  Contoh Penipu (Bahaya) ⚠️
+                  Contoh Penipu (Bahaya)
                 </button>
                 <button
                   onClick={() => {
@@ -183,7 +183,7 @@ export default function GuidePage() {
                       : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
-                  Contoh Resmi (Aman) ✅
+                  Contoh Resmi (Aman)
                 </button>
               </div>
             </div>
@@ -354,7 +354,7 @@ export default function GuidePage() {
                           {item.summary}
                         </p>
                         <div className="bg-[#FEF3C7] p-3 rounded-xl border border-[#FDE68A] text-xs font-bold text-[#B45309]">
-                          💡 {item.example}
+                          {item.example}
                         </div>
                       </div>
                     )}

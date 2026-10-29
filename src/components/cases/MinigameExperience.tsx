@@ -171,7 +171,7 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                 </div>
 
                 <p className="text-xs sm:text-sm text-[#475569] font-medium">
-                  👉 <strong>Petunjuk:</strong> Klik langsung bagian mencurigakan di layar HP simulasi bawah ini!
+                  <strong>Petunjuk:</strong> Klik langsung bagian mencurigakan di layar HP simulasi bawah ini!
                 </p>
 
                 {/* Simulated Smartphone Container */}
@@ -459,7 +459,7 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
 
               <div className="space-y-2">
                 <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#86EFAC]">
-                  MISI SELESAI DENGAN SUKSES! 🎉
+                  MISI SELESAI DENGAN SUKSES!
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
                   Hebat! Kamu Menyelamatkan Keluarga!

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   Compass,
   ArrowRight,
+  Award,
   ShieldCheck,
   CheckCircle2,
   Clock,
@@ -14,6 +15,7 @@ import {
   X,
   Play,
   Flame,
+  Search,
 } from 'lucide-react';
 import { SiteFrame } from '../../components/SiteChrome';
 import { Mascot } from '../../components/Mascot';
@@ -53,7 +55,7 @@ export default function CasesAdventureMap() {
                 <span>PETA PETUALANGAN DETEKTIF</span>
               </div>
               <h1 className="text-2xl sm:text-4xl font-extrabold text-[#0F172A] leading-tight">
-                Halo, Detektif {profile?.name || 'Keluarga'}! 🦉
+                Halo, Detektif {profile?.name || 'Keluarga'}!
               </h1>
               <p className="text-sm sm:text-base text-[#475569] max-w-lg leading-relaxed font-medium">
                 Pilih salah satu titik misi di jalur petualangan bawah ini untuk mulai menyelidiki kejanggalan dan membongkar kedok penipu!
@@ -109,8 +111,14 @@ export default function CasesAdventureMap() {
                         <span className="text-xs font-black uppercase tracking-wider">
                           {mission.isBoss ? 'BOSS' : `MISI ${mission.id}`}
                         </span>
-                        <span className="text-xl sm:text-2xl mt-0.5">
-                          {mission.isBoss ? '👑' : isCompleted ? '✅' : '🔍'}
+                        <span className="mt-0.5" aria-hidden="true">
+                          {mission.isBoss ? (
+                            <Award size={22} />
+                          ) : isCompleted ? (
+                            <CheckCircle2 size={22} />
+                          ) : (
+                            <Search size={22} />
+                          )}
                         </span>
                       </button>
 

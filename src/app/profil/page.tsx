@@ -17,6 +17,7 @@ import {
   Flame,
   ArrowRight,
   RotateCcw,
+  Lock,
 } from 'lucide-react';
 import { SiteFrame } from '../../components/SiteChrome';
 import { Mascot, MascotExpression } from '../../components/Mascot';
@@ -35,25 +36,25 @@ const AVATAR_OPTIONS: { id: MascotExpression; label: string }[] = [
 const BADGES_CONFIG = [
   {
     id: 'mata-elang',
-    title: 'Lencana Mata Elang 🦅',
+    title: 'Lencana Mata Elang',
     desc: 'Mampu menemukan 3 kejanggalan di pesan WhatsApp dalam sekali periksa.',
     unlocked: true,
   },
   {
     id: 'anti-apk-master',
-    title: 'Anti-APK Master 📱',
+    title: 'Anti-APK Master',
     desc: 'Berhasil membatalkan pemasangan file berbahaya .pdf.apk.',
     unlocked: true,
   },
   {
     id: 'pelindung-keluarga',
-    title: 'Pelindung Keluarga 🛡️',
+    title: 'Pelindung Keluarga',
     desc: 'Menyelamatkan rekening Ibu dari skenario penipuan telepon darurat.',
     unlocked: true,
   },
   {
     id: 'pelindung-dana-pensiun',
-    title: 'Pelindung Dana Pensiun 🏦',
+    title: 'Pelindung Dana Pensiun',
     desc: 'Berhasil membedah jebakan CS bank gadungan dan investasi bodong.',
     unlocked: false,
   },
@@ -94,7 +95,7 @@ export default function ProfilePage() {
   };
 
   const handleShareCertificate = () => {
-    const certText = `🎖️ *SERTIFIKAT DETEKTIF RESMI AWAS SCAM!* 🎖️
+    const certText = `*SERTIFIKAT DETEKTIF RESMI AWAS SCAM!*
 
 Nama: *${profile?.name || 'Detektif Keluarga'}*
 Pangkat: *${profile?.rank || 'Inspektur Anti-Scam'}*
@@ -104,7 +105,7 @@ Skor Ketelitian: *${profile?.xp || 250} XP*
 Saya telah terlatih mengenali modus penipuan online (file .APK palsu, link phishing, dan telepon darurat). Yuk uji ketelitianmu juga bersama Detektif Ciko di:
 https://awas-scam.id
 
-_Bersama lindungi keluarga dari kejahatan siber!_ 🦉❤️`;
+_Bersama lindungi keluarga dari kejahatan siber!_`;
 
     navigator.clipboard.writeText(certText).then(() => {
       playEvidenceFound();
@@ -217,7 +218,7 @@ _Bersama lindungi keluarga dari kejahatan siber!_ 🦉❤️`;
                 {copied ? (
                   <>
                     <Check size={16} />
-                    <span>Sertifikat Disalin! ❤️</span>
+                    <span>Sertifikat Disalin!</span>
                   </>
                 ) : (
                   <>
@@ -231,7 +232,7 @@ _Bersama lindungi keluarga dari kejahatan siber!_ 🦉❤️`;
             {/* Toast notification */}
             {copied && (
               <div className="bg-[#10B981] text-white p-3 rounded-2xl text-xs text-center font-bold animate-pop-in">
-                🎉 Teks Sertifikat Detektif berhasil disalin! Silakan paste di WhatsApp keluarga.
+                Teks Sertifikat Detektif berhasil disalin! Silakan paste di WhatsApp keluarga.
               </div>
             )}
           </div>
@@ -311,7 +312,7 @@ _Bersama lindungi keluarga dari kejahatan siber!_ 🦉❤️`;
                       badge.unlocked ? 'bg-[#DCFCE7]' : 'bg-[#E2E8F0]'
                     }`}
                   >
-                    {badge.unlocked ? '🏅' : '🔒'}
+                    {badge.unlocked ? <Award size={22} /> : <Lock size={22} />}
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-[#0F172A]">{badge.title}</h4>
@@ -373,7 +374,7 @@ _Bersama lindungi keluarga dari kejahatan siber!_ 🦉❤️`;
                       : 'bg-[#E2E8F0] text-[#64748B] hover:bg-[#CBD5E1]'
                   }`}
                 >
-                  {soundActive ? 'Aktif 🔊' : 'Mati 🔇'}
+                  {soundActive ? 'Aktif' : 'Mati'}
                 </button>
               </div>
             </div>

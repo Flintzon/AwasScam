@@ -50,7 +50,7 @@ export default function AboutPage() {
           {/* Core Guarantees */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-3xl p-5 border-2 border-[#BAE6FD] space-y-2">
-              <span className="text-2xl">🛡️</span>
+              <ShieldCheck size={24} aria-hidden="true" />
               <h3 className="font-bold text-base text-[#0F172A]">100% Gratis &amp; Terbuka</h3>
               <p className="text-xs text-[#64748B] leading-relaxed">
                 Didedikasikan untuk literasi publik masyarakat Indonesia tanpa dipungut biaya sepeser pun.
@@ -58,7 +58,7 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white rounded-3xl p-5 border-2 border-[#86EFAC] space-y-2">
-              <span className="text-2xl">🔒</span>
+              <ShieldCheck size={24} aria-hidden="true" />
               <h3 className="font-bold text-base text-[#0F172A]">Bebas Pelacak Iklan</h3>
               <p className="text-xs text-[#64748B] leading-relaxed">
                 Seluruh progres permainan tersimpan aman di browser perangkatmu tanpa pengumpulan data pribadi.
@@ -66,7 +66,7 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white rounded-3xl p-5 border-2 border-[#FDE68A] space-y-2">
-              <span className="text-2xl">👨‍👩‍👧</span>
+              <Users size={24} aria-hidden="true" />
               <h3 className="font-bold text-base text-[#0F172A]">Ramah Segala Usia</h3>
               <p className="text-xs text-[#64748B] leading-relaxed">
                 Dirancang khusus dengan font yang mudah dibaca oleh mata orang tua dan nenek kakek tercinta.

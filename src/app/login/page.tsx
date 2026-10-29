@@ -17,24 +17,24 @@ import { Mascot } from '../../components/Mascot';
 import { saveUserProfile, getUserProfile } from '../../utils/userState';
 import { playClick, playEvidenceFound } from '../../utils/sound';
 
-const ROLES: { id: 'Detektif Muda' | 'Orang Tua Siaga' | 'Penjaga Keluarga'; label: string; desc: string; icon: string }[] = [
+const ROLES: { id: 'Detektif Muda' | 'Orang Tua Siaga' | 'Penjaga Keluarga'; label: string; desc: string; icon: React.ReactNode }[] = [
   {
     id: 'Penjaga Keluarga',
-    label: 'Penjaga Keluarga 🛡️',
+    label: 'Penjaga Keluarga',
     desc: 'Ingin melindungi orang tua, anak, dan kerabat dari kejahatan siber.',
-    icon: '🛡️',
+    icon: <ShieldCheck size={22} aria-hidden="true" />,
   },
   {
     id: 'Orang Tua Siaga',
-    label: 'Orang Tua Siaga 👨‍👩‍👧',
+    label: 'Orang Tua Siaga',
     desc: 'Belajar mengenali modus kurir, perbankan, dan chat kenalan palsu.',
-    icon: '👨‍👩‍👧',
+    icon: <Users size={22} aria-hidden="true" />,
   },
   {
     id: 'Detektif Muda',
-    label: 'Detektif Muda ⚡',
+    label: 'Detektif Muda',
     desc: 'Generasi muda melek teknologi yang ingin mengasah naluri kritis.',
-    icon: '⚡',
+    icon: <Sparkles size={22} aria-hidden="true" />,
   },
 ];
 
@@ -106,7 +106,7 @@ export default function LoginPage() {
 
             <div className="space-y-1">
               <span className="text-xs font-bold px-3 py-1 rounded-full bg-white text-[#FF6B00] border border-[#FFE8D6] shadow-sm inline-block">
-                {isTyping ? 'Wah, Detektif Hebat!' : 'Sapaan Detektif Ciko 🦉'}
+                {isTyping ? 'Wah, Detektif Hebat!' : 'Sapaan Detektif Ciko'}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A]">
                 {isTyping ? `Halo, Kak ${nickname}!` : 'Selamat Datang, Calon Detektif!'}
@@ -135,7 +135,7 @@ export default function LoginPage() {
                     : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
-                Mulai Cepat (Tanpa Ribet) ✨
+                Mulai Cepat (Tanpa Ribet)
               </button>
               <button
                 type="button"
@@ -149,7 +149,7 @@ export default function LoginPage() {
                     : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
-                Masuk Akun Tersimpan 👤
+                Masuk Akun Tersimpan
               </button>
             </div>
 
@@ -196,7 +196,7 @@ export default function LoginPage() {
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{role.icon}</span>
+                          <span className="text-[#172640]">{role.icon}</span>
                           <div>
                             <p className="text-sm font-bold text-[#0F172A]">{role.label}</p>
                             <p className="text-xs text-[#64748B]">{role.desc}</p>
@@ -230,7 +230,7 @@ export default function LoginPage() {
 
       {/* Footer Info */}
       <div className="text-center text-xs text-[#64748B] font-medium pt-6">
-        🔒 100% Berjalan Lokal di Perangkatmu · Tanpa Pengumpulan Password atau Data Pribadi
+        100% Berjalan Lokal di Perangkatmu · Tanpa Pengumpulan Password atau Data Pribadi
       </div>
     </div>
   );
