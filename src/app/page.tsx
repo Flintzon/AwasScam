@@ -58,18 +58,11 @@ export default function LandingPage() {
               {/* CTA Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
                 <Link
-                  href="/login"
+                  href="/kasus"
                   className="btn-pill-orange text-base sm:text-lg py-3.5 px-8 inline-flex items-center gap-2.5 font-bold shadow-lg"
                 >
-                  <span>Mulai Misi Sekarang — Gratis!</span>
+                  <span>Mulai Petualangan</span>
                   <ArrowRight size={20} />
-                </Link>
-
-                <Link
-                  href="/login"
-                  className="btn-pill-white text-base py-3.5 px-6 font-bold inline-flex items-center gap-2"
-                >
-                  <span>Sudah Punya Akun? Masuk</span>
                 </Link>
               </div>
 
@@ -79,7 +72,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5 flex flex-col items-center justify-center self-start lg:-mt-8">
               <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[448px] -mt-2 lg:-mt-4">
                 <div className="relative p-6 pt-0 flex items-center justify-center">
-                  <div className="relative w-64 h-64 translate-y-3 sm:w-72 sm:h-72 lg:h-[400px] lg:w-[400px] lg:translate-y-16">
+                  <div className="relative w-64 h-64 translate-y-3 bg-[#FFFDF9] sm:w-72 sm:h-72 lg:h-[400px] lg:w-[400px] lg:translate-y-16">
                     <video
                       autoPlay
                       loop
@@ -137,7 +130,7 @@ export default function LandingPage() {
                 </span>
                 <div className="relative aspect-[5/4] w-full">
                   <Image
-                    src="/mascot_detective/homepage-orange/pose-1.png"
+                    src="/mascot_detective/homepage-orange/pose-1-blue-scarf.png"
                     alt="Detektif Ciko menunjuk untuk memulai simulasi"
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
@@ -159,7 +152,7 @@ export default function LandingPage() {
                 </span>
                 <div className="relative aspect-[5/4] w-full">
                   <Image
-                    src="/mascot_detective/homepage-orange/pose-2.png"
+                    src="/mascot_detective/homepage-orange/pose-2-blue-scarf.png"
                     alt="Detektif Ciko memeriksa petunjuk dengan kaca pembesar"
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
@@ -181,7 +174,7 @@ export default function LandingPage() {
                 </span>
                 <div className="relative aspect-[5/4] w-full">
                   <Image
-                    src="/mascot_detective/homepage-orange/pose-5.png"
+                    src="/mascot_detective/homepage-orange/pose-5-blue-scarf.png"
                     alt="Detektif Ciko siap melindungi keluarga"
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
@@ -227,16 +220,16 @@ export default function LandingPage() {
               Siap Menguji Ketelitianmu Hari Ini?
             </h2>
             <p className="text-base sm:text-lg text-[#334155] leading-relaxed font-medium">
-              5 berkas kasus penipuan digital sedang menunggu penyelidikanmu. Masuk ke Ruang Detektif sekarang tanpa perlu daftar yang ribet!
+              5 berkas kasus penipuan digital sedang menunggu penyelidikanmu. Mulai petualangan langsung di Ruang Detektif.
             </p>
           </div>
 
           <div className="pt-2">
             <Link
-              href="/login"
+              href="/kasus"
               className="btn-pill-orange text-lg sm:text-xl py-4 px-10 inline-flex items-center gap-3 font-bold shadow-xl"
             >
-              <span>Masuk ke Ruang Detektif</span>
+              <span>Mulai Petualangan</span>
               <ArrowRight size={22} />
             </Link>
           </div>
