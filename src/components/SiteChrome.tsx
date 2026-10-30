@@ -7,6 +7,8 @@ import { ChevronRight, Heart, ShieldCheck } from 'lucide-react';
 
 export function SiteHeader() {
   const path = usePathname();
+  const navLinkClass =
+    'rounded-full px-1.5 py-2 transition-colors sm:px-4';
 
   return (
     <header className="sticky top-3 z-50 px-3 sm:px-6 w-full max-w-5xl mx-auto">
@@ -23,23 +25,35 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="flex items-center gap-0.5 sm:gap-4 text-xs sm:text-sm font-bold" aria-label="Navigasi utama">
+        <nav
+          className="flex items-center gap-0.5 text-xs font-bold sm:gap-4 sm:text-sm"
+          aria-label="Navigasi utama"
+        >
           <Link
             href="/panduan"
             aria-current={path === '/panduan' ? 'page' : undefined}
-            className="px-1.5 sm:px-4 py-2 rounded-full text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00] transition-colors"
+            className={`${navLinkClass} ${
+              path === '/panduan'
+                ? 'bg-[#FFF1E6] text-[#B04A00]'
+                : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00]'
+            }`}
           >
             Panduan
           </Link>
           <Link
             href="/progres"
             aria-current={path === '/progres' ? 'page' : undefined}
-            className="px-1.5 sm:px-4 py-2 rounded-full text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00] transition-colors"
+            className={`${navLinkClass} ${
+              path === '/progres'
+                ? 'bg-[#FFF1E6] text-[#B04A00]'
+                : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00]'
+            }`}
           >
             Progres
           </Link>
           <Link
             href="/kasus"
+            aria-current={path === '/kasus' ? 'page' : undefined}
             className="btn-pill-orange !px-2 !py-1 !text-xs sm:!px-5 sm:!py-2.5 sm:!text-sm inline-flex items-center gap-1 sm:gap-1.5 font-bold shadow-md whitespace-nowrap"
           >
             <span className="sm:hidden">Mulai</span>

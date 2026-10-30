@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SiteFrame } from '../../components/SiteChrome';
+import { Mascot } from '../../components/Mascot';
 import { MISSIONS } from '../../data/cases';
 import { getUserProfile, UserProfile } from '../../utils/userState';
 
@@ -45,21 +46,30 @@ export default function CasesAdventureMap() {
   const profile = useSyncExternalStore(
     subscribeToProfile,
     getProfileSnapshot,
-    () => null
+    getUserProfile
   );
   const completedCases = new Set(profile?.completedCases ?? []);
 
   return (
     <SiteFrame>
       <div className="min-h-screen bg-[#FFFDF8] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <div className="mx-auto max-w-4xl space-y-8">
-          <header className="space-y-2">
-            <h1 className="text-3xl font-extrabold tracking-tight text-[#0F172A] sm:text-4xl">
-              Pilih Kasus
-            </h1>
-            <p className="text-sm font-medium leading-relaxed text-[#475569] sm:text-base">
-              Pilih kasus untuk membuka simulasinya.
-            </p>
+        <div className="mx-auto max-w-4xl space-y-7 sm:space-y-9">
+          <header className="flex items-center justify-between gap-4 sm:gap-8">
+            <div className="space-y-2">
+              <h1 className="text-3xl font-extrabold tracking-tight text-[#0F172A] sm:text-4xl">
+                Pilih Kasus
+              </h1>
+              <p className="text-sm font-medium leading-relaxed text-[#475569] sm:text-base">
+                Pilih kasus untuk membuka simulasinya.
+              </p>
+            </div>
+            <Mascot
+              name="03_memeriksa"
+              alt="Detektif Ciko memeriksa daftar kasus"
+              width={128}
+              height={128}
+              className="h-20 w-20 shrink-0 sm:h-28 sm:w-28"
+            />
           </header>
 
           <section aria-labelledby="case-list-title">
@@ -74,13 +84,13 @@ export default function CasesAdventureMap() {
                   <li key={mission.slug}>
                     <Link
                       href={`/kasus/${mission.slug}`}
-                      className="group flex items-center gap-3 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D95B00] sm:gap-5 sm:py-6"
+                      className="group -mx-2 flex items-center gap-3 rounded-xl px-2 py-5 transition-colors hover:bg-[#FFF8F1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B04A00] active:bg-[#FFF1E6] sm:gap-5 sm:py-6"
                     >
                       <span
                         aria-hidden="true"
                         className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                           isComplete
-                            ? 'bg-[#E3E8F1] text-[#172640]'
+                            ? 'bg-[#DCFCE7] text-[#15803D]'
                             : 'bg-[#FFE8DB] text-[#B04A00]'
                         }`}
                       >
@@ -108,15 +118,23 @@ export default function CasesAdventureMap() {
                             {mission.duration}
                           </span>
                           <span>{mission.difficulty}</span>
+                          <span
+                            className={`inline-flex items-center gap-1 font-semibold ${
+                              isComplete ? 'text-[#15803D]' : 'text-[#5D6982]'
+                            }`}
+                          >
+                            {isComplete && <Check size={13} aria-hidden="true" />}
+                            {isComplete ? 'Selesai' : 'Belum selesai'}
+                          </span>
                         </span>
                       </span>
 
-                      <span className="flex shrink-0 items-center gap-2 text-sm font-bold text-[#B04A00]">
-                        <span className="hidden sm:inline">
+                      <span className="flex shrink-0 items-center gap-1 text-xs font-bold text-[#B04A00] sm:gap-2 sm:text-sm">
+                        <span className="whitespace-nowrap">
                           {isComplete ? 'Main lagi' : 'Mainkan'}
                         </span>
                         <ArrowRight
-                          size={18}
+                          size={16}
                           aria-hidden="true"
                           className="transition-transform group-hover:translate-x-1"
                         />
@@ -129,7 +147,7 @@ export default function CasesAdventureMap() {
               <li>
                 <div
                   aria-disabled="true"
-                  className="flex cursor-not-allowed items-center gap-3 py-5 opacity-70 sm:gap-5 sm:py-6"
+                  className="flex cursor-not-allowed items-center gap-3 py-5 opacity-80 sm:gap-5 sm:py-6"
                 >
                   <span
                     aria-hidden="true"
