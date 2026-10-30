@@ -14,12 +14,12 @@ export function SiteHeader() {
     <header className="sticky top-3 z-50 px-3 sm:px-6 w-full max-w-5xl mx-auto">
       <div className="bg-white/95 backdrop-blur-md border-2 border-[#FFE8D6] rounded-full shadow-[0_8px_30px_rgba(255,122,0,0.12)] px-3 sm:px-6 py-2.5 flex items-center justify-between gap-3">
         <Link href="/" className="flex items-center shrink-0 group focus:outline-none">
-          <div className="relative h-9 w-20 sm:h-10 sm:w-32 transition-transform duration-200 group-hover:scale-105">
+          <div className="relative h-14 w-14 transition-transform duration-200 group-hover:scale-105 sm:h-20 sm:w-20">
             <Image
-              src="/logo.png"
+              src="/mascot_detective/logoo.png"
               alt="Logo AWAS SCAM!"
               fill
-              className="object-contain object-left"
+              className="object-contain"
               priority
             />
           </div>
