@@ -4,17 +4,47 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ChevronRight, Heart, ShieldCheck } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+
+function useScrollDirection() {
+  const [scrollDir, setScrollDir] = useState<'up' | 'down' | null>(null);
+  const lastYRef = useRef<number>(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastYRef.current) {
+        setScrollDir('down');
+      } else {
+        setScrollDir('up');
+      }
+      lastYRef.current = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return scrollDir;
+}
 
 export function SiteHeader() {
   const path = usePathname();
-  const navLinkClass =
-    'rounded-full px-1.5 py-2 transition-colors sm:px-4';
+  const scrollDir = useScrollDirection();
+  const navLinkClass = 'rounded-full px-3 py-1.5 transition-colors duration-200';
+  const navItemClass = (active: boolean) =>
+    active
+      ? 'bg-[#FFF1E6] text-[#B04A00]'
+      : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00]';
 
   return (
-    <header className="sticky top-3 z-50 px-3 sm:px-6 w-full max-w-5xl mx-auto">
-      <div className="bg-white/95 backdrop-blur-md border-2 border-[#FFE8D6] rounded-full shadow-[0_8px_30px_rgba(255,122,0,0.12)] px-3 sm:px-6 py-2.5 flex items-center justify-between gap-3">
-        <Link href="/" className="flex items-center shrink-0 group focus:outline-none">
-          <div className="relative h-14 w-14 transition-transform duration-200 group-hover:scale-105 sm:h-20 sm:w-20">
+    <header
+      className={`sticky top-3 z-50 px-3 sm:px-6 w-full max-w-6xl mx-auto transition-transform duration-300 ${
+        scrollDir === 'down' ? 'nav-scroll-hide' : 'nav-scroll-show'
+      }`}
+    >
+      <div className="bg-white/95 backdrop-blur-md border-2 border-[#FFE8D6] rounded-full shadow-[0_6px_24px_rgba(255,122,0,0.10)] px-2.5 sm:px-5 py-1.5 sm:py-2 flex items-center justify-between gap-3">
+        <Link href="/" className="flex items-center shrink-0 group" aria-label="Halaman utama AWAS SCAM!">
+          <div className="relative h-11 w-11 sm:h-14 sm:w-14 transition-transform duration-200 group-hover:scale-105">
             <Image
               src="/mascot_detective/logoo.png"
               alt="Logo AWAS SCAM!"
@@ -26,35 +56,34 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="flex items-center gap-0.5 text-xs font-bold sm:gap-4 sm:text-sm"
+          className="flex items-center gap-1 text-xs font-bold sm:gap-4 sm:text-sm"
           aria-label="Navigasi utama"
         >
           <Link
             href="/panduan"
             aria-current={path === '/panduan' ? 'page' : undefined}
-            className={`${navLinkClass} ${
-              path === '/panduan'
-                ? 'bg-[#FFF1E6] text-[#B04A00]'
-                : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00]'
-            }`}
+            className={`${navLinkClass} ${navItemClass(path === '/panduan')}`}
           >
             Panduan
           </Link>
           <Link
+            href="/kasus"
+            aria-current={path === '/kasus' ? 'page' : undefined}
+            className={`${navLinkClass} ${navItemClass(path === '/kasus')}`}
+          >
+            Kasus
+          </Link>
+          <Link
             href="/progres"
             aria-current={path === '/progres' ? 'page' : undefined}
-            className={`${navLinkClass} ${
-              path === '/progres'
-                ? 'bg-[#FFF1E6] text-[#B04A00]'
-                : 'text-[#334155] hover:bg-[#FFF7ED] hover:text-[#FF6B00]'
-            }`}
+            className={`${navLinkClass} ${navItemClass(path === '/progres')}`}
           >
             Progres
           </Link>
           <Link
             href="/kasus"
             aria-current={path === '/kasus' ? 'page' : undefined}
-            className="btn-pill-orange !px-2 !py-1 !text-xs sm:!px-5 sm:!py-2.5 sm:!text-sm inline-flex items-center gap-1 sm:gap-1.5 font-bold shadow-md whitespace-nowrap"
+            className="btn-pill-orange !px-3 !py-1.5 !text-xs sm:!px-5 sm:!py-2 sm:!text-sm inline-flex items-center gap-1 sm:gap-1.5 font-bold shadow-md whitespace-nowrap"
           >
             <span className="sm:hidden">Mulai</span>
             <span className="hidden sm:inline">Mulai Petualangan</span>

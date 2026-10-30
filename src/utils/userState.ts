@@ -12,6 +12,7 @@ export interface UserProfile {
   badges: string[];
   textSize: 'normal' | 'large';
   soundEnabled: boolean;
+  scores: Record<string, number>; // best game score per case slug
 }
 
 const DEFAULT_PROFILE: UserProfile = {
@@ -19,13 +20,14 @@ const DEFAULT_PROFILE: UserProfile = {
   role: 'Penjaga Keluarga',
   rank: 'Detektif Pemula',
   avatar: '01_normal',
-  xp: 150,
-  streak: 3,
+  xp: 0,
+  streak: 0,
   joinedDate: 'Hari Ini',
-  completedCases: ['paket-misterius'],
-  badges: ['mata-elang', 'pelindung-keluarga'],
+  completedCases: [],
+  badges: [],
   textSize: 'normal',
   soundEnabled: true,
+  scores: {},
 };
 
 const STORAGE_KEY = 'awas_scam_user_profile';
@@ -55,11 +57,17 @@ export function saveUserProfile(profile: Partial<UserProfile>): UserProfile {
   }
 }
 
-export function completeCase(caseSlug: string, earnedXp: number = 100): UserProfile {
+export function completeCase(
+  caseSlug: string,
+  earnedXp: number = 100,
+  gameScore = 0
+): UserProfile {
   const current = getUserProfile();
+  const firstClear = !current.completedCases.includes(caseSlug);
+
   const completed = Array.from(new Set([...current.completedCases, caseSlug]));
-  
-  // Calculate new rank based on completed cases
+
+  // Rank naik tiap 2 kasus
   let newRank = 'Detektif Pemula';
   if (completed.length >= 4) newRank = 'Detektif Ahli Madya';
   else if (completed.length >= 2) newRank = 'Inspektur Anti-Scam';
@@ -72,10 +80,16 @@ export function completeCase(caseSlug: string, earnedXp: number = 100): UserProf
     newBadges.push('pelindung-dana-pensiun');
   }
 
+  const updatedScores = {
+    ...current.scores,
+    [caseSlug]: Math.max(current.scores[caseSlug] ?? 0, gameScore),
+  };
+
   return saveUserProfile({
     completedCases: completed,
-    xp: current.xp + earnedXp,
+    xp: current.xp + (firstClear ? earnedXp : 0),
     rank: newRank,
     badges: Array.from(new Set(newBadges)),
+    scores: updatedScores,
   });
 }

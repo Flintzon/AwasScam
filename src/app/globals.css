@@ -255,6 +255,20 @@ button:focus-visible, a:focus-visible, [role='button']:focus-visible, input:focu
   letter-spacing: 0.02em;
 }
 
+.nav-scroll-hide {
+  transform: translate3d(0, -140%, 0) !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.nav-scroll-show {
+  transform: translate3d(0, 0, 0) !important;
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

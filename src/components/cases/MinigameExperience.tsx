@@ -6,26 +6,20 @@ import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
   ArrowRight,
-  ShieldCheck,
-  AlertTriangle,
+  CheckCircle2,
   FileCode2,
   HelpCircle,
-  Sparkles,
   RotateCcw,
-  CheckCircle2,
   Zap,
-  Check,
   Eye,
-  PhoneCall,
-  Clock,
-  Compass,
   Award,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { SiteFrame } from '../SiteChrome';
 import { Mascot, MascotName } from '../Mascot';
 import { CaseMission, CaseHotspot, DecisionChoice, MISSIONS } from '../../data/cases';
-import { completeCase } from '../../utils/userState';
+import { MissionCover } from './MissionCover';
+import { completeCase, getUserProfile } from '../../utils/userState';
 import {
   playClick,
   playEvidenceFound,
@@ -44,6 +38,8 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
   const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
   const [decisionFeedback, setDecisionFeedback] = useState<DecisionChoice | null>(null);
   const [isVictory, setIsVictory] = useState(false);
+  const [victoryProfile, setVictoryProfile] = useState(() => getUserProfile());
+  const [finalScore, setFinalScore] = useState(0);
 
   // Dynamic mascot reaction
   let mascotName: MascotName = '03_memeriksa';
@@ -89,14 +85,24 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
     setActiveHotspot(null);
   };
 
+  const evidenceScore = mission.evidence.hotspots
+    .filter((hotspot) => foundHotspotIds.includes(hotspot.id))
+    .reduce((total, hotspot) => total + hotspot.points, 0);
+  const canDecide = foundHotspotIds.length === mission.evidence.hotspots.length;
+  const gameScore = evidenceScore + 100;
+
   const handleChooseDecision = (choice: DecisionChoice) => {
+    if (!canDecide || isVictory) return;
     setSelectedChoiceId(choice.id);
     setDecisionFeedback(choice);
 
     if (choice.isCorrect) {
       playVictory();
+      const gameScore = evidenceScore + 100;
+      setFinalScore(gameScore);
+      const updated = completeCase(mission.slug, mission.xpReward, gameScore);
+      setVictoryProfile(updated);
       setIsVictory(true);
-      completeCase(mission.slug, mission.xpReward);
       confetti({
         particleCount: 80,
         spread: 80,
@@ -170,9 +176,38 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                   </div>
                 </div>
 
+                <div className="overflow-hidden rounded-2xl border-2 border-[#EEDCC8] bg-[#FAF6EE]">
+                  <div className="flex items-center justify-between border-b border-[#EEDCC8] px-4 py-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#B45309]">Konteks Kasus</span>
+                    <span className="text-[11px] font-semibold text-[#64748B]">Simulasi edukasi</span>
+                  </div>
+                  <div className="relative aspect-[16/7] min-h-[150px]">
+                    <MissionCover mission={mission} className="absolute inset-0 h-full w-full" />
+                  </div>
+                  <p className="px-4 py-3 text-xs leading-relaxed text-[#475569]">{mission.summary}</p>
+                </div>
+
                 <p className="text-xs sm:text-sm text-[#475569] font-medium">
                   <strong>Petunjuk:</strong> Klik langsung bagian mencurigakan di layar HP simulasi bawah ini!
                 </p>
+
+                <div className="grid grid-cols-3 gap-2 rounded-2xl border-2 border-[#FFE8D6] bg-[#FFF7ED] px-3 py-2 text-center text-[11px] font-bold text-[#64748B]">
+                  <span
+                    className={`rounded-xl py-1 ${foundHotspotIds.length > 0 && foundHotspotIds.length < mission.evidence.hotspots.length ? 'bg-[#FDE68A] text-[#92400e]' : foundHotspotIds.length === mission.evidence.hotspots.length && !decisionFeedback ? 'bg-[#10B981]/20 text-[#065F46]' : ''}`}
+                  >
+                    {foundHotspotIds.length > 0 ? 'Temukan' : '1. Temukan'} kejanggalan
+                  </span>
+                  <span
+                    className={`rounded-xl py-1 ${decisionFeedback === null && foundHotspotIds.length === mission.evidence.hotspots.length ? 'bg-[#FDE68A] text-[#92400e]' : decisionFeedback ? 'bg-[#10B981]/20 text-[#065F46]' : ''}`}
+                  >
+                    {decisionFeedback === null && foundHotspotIds.length === mission.evidence.hotspots.length ? 'Putuskan' : '2. Putuskan'}
+                  </span>
+                  <span
+                    className={`rounded-xl py-1 ${isVictory ? 'bg-[#10B981] text-white' : decisionFeedback ? 'bg-[#FDE68A] text-[#92400e]' : ''}`}
+                  >
+                    {isVictory ? 'Selesai!' : decisionFeedback ? '3. Tindak lanjut' : '3. Tindak lanjut'}
+                  </span>
+                </div>
 
                 {/* Simulated Smartphone Container */}
                 <div className="rounded-[36px] border-[8px] border-[#1E293B] shadow-2xl bg-[#0B141B] overflow-hidden relative">
@@ -330,6 +365,18 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                   <p className="text-sm text-[#0F172A] leading-relaxed font-semibold">
                     &ldquo;{mascotSpeech}&rdquo;
                   </p>
+                  <div className="mt-3 space-y-1.5">
+                    <div className="flex items-center justify-between text-[11px] font-bold text-[#64748B]">
+                      <span>Skor investigasi</span>
+                      <span className="text-[#FF6B00]">{evidenceScore} / 100</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-[#FFE8D6]">
+                      <div
+                        className="h-full rounded-full bg-[#FF6B00] transition-[width] duration-500"
+                        style={{ width: `${evidenceScore}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -377,7 +424,13 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                   </h3>
                 </div>
 
-                <div className="space-y-2.5">
+                {!canDecide && !decisionFeedback && (
+                  <p className="text-xs font-bold text-[#B45309] bg-[#FEF3C7] border border-[#FDE68A] rounded-xl px-3 py-2.5">
+                    Temukan semua kejanggalan dulu sebelum mengambil keputusan ({foundHotspotIds.length}/{mission.evidence.hotspots.length}).
+                  </p>
+                )}
+
+                <div className={`space-y-2.5 transition-opacity duration-300 ${!canDecide ? 'opacity-45 pointer-events-none select-none' : ''}`}>
                   {mission.choices.map((choice) => {
                     const isSelected = selectedChoiceId === choice.id;
                     let style = 'border-[#E2E8F0] hover:border-[#FF6B00] hover:bg-[#FFF7ED]/60';
@@ -396,7 +449,7 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                       <button
                         key={choice.id}
                         onClick={() => handleChooseDecision(choice)}
-                        disabled={isVictory}
+                        disabled={isVictory || !canDecide}
                         className={`w-full text-left p-3.5 rounded-2xl border-2 transition-all flex items-start gap-3 ${style}`}
                       >
                         <span
@@ -428,6 +481,23 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
                     <span>Coba Pilihan Lain</span>
                   </button>
                 )}
+
+                {decisionFeedback && (
+                  <div
+                    className={`rounded-2xl border-2 px-4 py-3 space-y-1 text-sm ${
+                      decisionFeedback.isCorrect
+                        ? 'border-[#86EFAC] bg-[#F0FDF4] text-[#14532d]'
+                        : 'border-[#FECACA] bg-[#FEF2F2] text-[#7f1d1d]'
+                    }`}
+                  >
+                    <p className="font-extrabold">
+                      {decisionFeedback.isCorrect ? 'Keputusan Tepat!' : 'Keputusan Kurang Tepat!'}
+                    </p>
+                    <p className="text-xs leading-relaxed opacity-90">
+                      {decisionFeedback.outcomeText}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -437,74 +507,87 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
             VICTORY MODAL (LAYAR KEMENANGAN MISI WITH 06_melompat.png)
            ========================================================================= */}
         {isVictory && (
-          <div className="fixed inset-0 z-50 bg-[#0F172A]/70 backdrop-blur-sm flex items-center justify-center p-4 animate-pop-in">
-            <div className="bg-white rounded-[36px] max-w-lg w-full p-6 sm:p-8 border-4 border-[#FFE8D6] shadow-2xl text-center space-y-6 relative overflow-hidden">
+          <div className="fixed inset-0 z-50 bg-[#0F172A]/80 backdrop-blur-md flex items-center justify-center p-4 animate-pop-in">
+            <div className="bg-white rounded-3xl max-w-[340px] w-full border-4 border-[#FFE8D6] shadow-2xl text-center space-y-3 p-4 relative overflow-hidden">
               {/* Confetti Glow Background */}
               <div
                 aria-hidden="true"
-                className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-80 bg-[#FEF3C7] rounded-full blur-2xl -z-10"
+                className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#FEF3C7] rounded-full blur-2xl -z-10"
               />
 
-              <div className="flex justify-center">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 relative">
+              <div className="flex items-center gap-3">
+                <div className="w-14 h-14 shrink-0 relative">
                   <Mascot
                     name="06_melompat"
                     alt="Detektif Ciko melompat gembira"
-                    width={160}
-                    height={160}
+                    width={56}
+                    height={56}
                     animate="bounce"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#86EFAC]">
-                  MISI SELESAI DENGAN SUKSES!
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
-                  Hebat! Kamu Menyelamatkan Keluarga!
-                </h3>
-                <p className="text-sm text-[#475569] max-w-md mx-auto leading-relaxed font-medium">
-                  {decisionFeedback?.outcomeText}
-                </p>
-              </div>
-
-              <div className="bg-[#FFF7ED] p-4 rounded-2xl border border-[#FFEDD5] flex items-center justify-around text-center">
-                <div>
-                  <span className="text-xs font-bold text-[#64748B]">Bonus Hadiah:</span>
-                  <p className="text-xl font-black text-[#FF6B00]">+{mission.xpReward} XP</p>
-                </div>
-                <div className="w-px h-8 bg-[#FED7AA]" />
-                <div>
-                  <span className="text-xs font-bold text-[#64748B]">Status Misi:</span>
-                  <p className="text-xl font-black text-[#10B981]">TERBONGKAR</p>
+                <div className="min-w-0 text-left">
+                  <span className="inline-block text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#86EFAC]">
+                    Misi Selesai
+                  </span>
+                  <h3 className="text-base font-black leading-tight text-[#0F172A]">Hebat! Kamu Menyelamatkan Keluarga</h3>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+              <div className="bg-[#FFF7ED] rounded-xl border-2 border-[#FFE8D6] p-2.5 space-y-1.5">
+                <div className="flex items-end justify-between">
+                  <p className="text-[9px] font-black uppercase tracking-wider text-[#B45309]">Skor Kasus</p>
+                  <p className="text-[9px] font-bold text-[#92400E]">Bukti {evidenceScore}/100 · +100 keputusan</p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <span className="text-3xl font-black leading-none tabular-nums text-[#FF6B00]">{finalScore}</span>
+                  <span className="text-xs font-bold text-[#B45309] mb-0.5">/200</span>
+                  <div className="flex-1 h-1.5 mb-1 overflow-hidden rounded-full bg-[#FFE8D6]">
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FACC15]" style={{ width: `${Math.min(100, (finalScore / 200) * 100)}%` }} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-around bg-[#FFF7ED] rounded-lg border border-[#FFEDD5] py-2 text-center">
+                <div>
+                  <span className="text-[9px] font-bold text-[#64748B] block">XP</span>
+                  <p className="text-sm font-black text-[#FF6B00]">{victoryProfile.xp ?? 0}</p>
+                </div>
+                <div className="w-px h-5 bg-[#FED7AA]" />
+                <div>
+                  <span className="text-[9px] font-bold text-[#64748B] block">Rank</span>
+                  <p className="text-[11px] font-black text-[#15803D]">{victoryProfile.rank ?? 'Pemula'}</p>
+                </div>
+                <div className="w-px h-5 bg-[#FED7AA]" />
+                <div>
+                  <span className="text-[9px] font-bold text-[#64748B] block">Kasus</span>
+                  <p className="text-xs font-black text-[#15803D]">{victoryProfile.completedCases?.length ?? 0}/{MISSIONS.length}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
                 {nextMission ? (
                   <Link
                     href={`/kasus/${nextMission.slug}`}
-                    className="btn-pill-orange w-full py-3.5 text-base font-bold flex items-center justify-center gap-2 shadow-lg"
+                    className="btn-pill-orange w-full py-3 text-sm font-bold flex items-center justify-center gap-2 shadow-lg"
                   >
-                    <span>Lanjut ke Misi Berikutnya</span>
-                    <ArrowRight size={18} />
+                    <span>Lanjut Misi Berikutnya</span>
+                    <ArrowRight size={14} />
                   </Link>
                 ) : (
                   <Link
                     href="/progres"
-                    className="btn-pill-orange w-full py-3.5 text-base font-bold flex items-center justify-center gap-2 shadow-lg"
+                    className="btn-pill-orange w-full py-3 text-sm font-bold flex items-center justify-center gap-2 shadow-lg"
                   >
-                    <span>Lihat Progres &amp; Lencana</span>
-                    <Award size={18} />
+                    <span>Lihat Progres</span>
+                    <Award size={14} />
                   </Link>
                 )}
 
                 <Link
                   href="/kasus"
-                  className="btn-pill-white w-full sm:w-auto py-3.5 px-6 text-sm font-bold whitespace-nowrap"
+                  className="btn-pill-white w-full py-3 text-sm font-bold"
                 >
-                  Peta Misi Kasus
+                  Peta Misi
                 </Link>
               </div>
             </div>

@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Check,
   Clock3,
+  Lock,
   PhoneCall,
   Sparkles,
 } from 'lucide-react';
@@ -79,9 +80,24 @@ export default function CasesAdventureMap() {
             <ol className="divide-y divide-[#F3E4D8] border-y border-[#F3E4D8]">
               {MISSIONS.map((mission, index) => {
                 const isComplete = completedCases.has(mission.slug);
+                const isLocked = index > 0 && !completedCases.has(MISSIONS[index - 1].slug);
 
                 return (
                   <li key={mission.slug}>
+                    {isLocked ? (
+                      <div className="flex cursor-not-allowed items-center gap-3 rounded-xl px-2 py-5 opacity-55 sm:gap-5 sm:py-6">
+                        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E3E8F1] text-[#64748B]">
+                          <Lock size={16} />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <span className="font-bold text-[#172640]">{mission.title}</span>
+                            <span className="rounded-sm bg-[#E3E8F1] px-1.5 py-0.5 text-[0.65rem] font-bold text-[#475569]">TERKUNCI</span>
+                          </span>
+                          <span className="mt-1 block text-sm leading-relaxed text-[#3F4D6B]">Selesaikan kasus sebelumnya untuk membuka misi ini.</span>
+                        </span>
+                      </div>
+                    ) : (
                     <Link
                       href={`/kasus/${mission.slug}`}
                       className="group -mx-2 flex items-center gap-3 rounded-xl px-2 py-5 transition-colors hover:bg-[#FFF8F1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B04A00] active:bg-[#FFF1E6] sm:gap-5 sm:py-6"
@@ -140,6 +156,7 @@ export default function CasesAdventureMap() {
                         />
                       </span>
                     </Link>
+                    )}
                   </li>
                 );
               })}
