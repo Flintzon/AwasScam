@@ -507,88 +507,108 @@ export function MinigameExperience({ mission }: { mission: CaseMission }) {
             VICTORY MODAL (LAYAR KEMENANGAN MISI WITH 06_melompat.png)
            ========================================================================= */}
         {isVictory && (
-          <div className="fixed inset-0 z-50 bg-[#0F172A]/80 backdrop-blur-md flex items-center justify-center p-4 animate-pop-in">
-            <div className="bg-white rounded-3xl max-w-[340px] w-full border-4 border-[#FFE8D6] shadow-2xl text-center space-y-3 p-4 relative overflow-hidden">
-              {/* Confetti Glow Background */}
-              <div
-                aria-hidden="true"
-                className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#FEF3C7] rounded-full blur-2xl -z-10"
-              />
+          <div className="fixed inset-0 z-50 flex flex-col bg-[#0F172A]/80 backdrop-blur-md animate-pop-in">
+            <div className="flex min-h-0 flex-1 items-end justify-center sm:items-center sm:pt-8 sm:pb-0">
+              <div className="relative flex w-full flex-col bg-white sm:max-w-md sm:rounded-3xl sm:border-4 sm:border-[#FFE8D6] sm:shadow-2xl sm:overflow-hidden">
+                {/* Confetti glow: mobile full bleed, desktop confined card */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 -top-32 left-1/2 -translate-x-1/2 w-[400px] sm:w-80 sm:h-80 bg-[#FEF3C7] rounded-full blur-3xl -z-10 sm:-z-10"
+                />
 
-              <div className="flex items-center gap-3">
-                <div className="w-14 h-14 shrink-0 relative">
-                  <Mascot
-                    name="06_melompat"
-                    alt="Detektif Ciko melompat gembira"
-                    width={56}
-                    height={56}
-                    animate="bounce"
-                  />
+                {/* Header: mascot + status */}
+                <div className="flex items-start gap-3 px-4 pt-5 pb-3 sm:px-6 sm:pt-6 sm:pb-4">
+                  <div className="h-14 w-14 shrink-0 sm:h-16 sm:w-16">
+                    <Mascot
+                      name="06_melompat"
+                      alt="Detektif Ciko melompat gembira"
+                      width={56}
+                      height={56}
+                      animate="bounce"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1 pt-1 text-left">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#86EFAC] bg-[#DCFCE7] px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-[#15803D]">
+                      Misi Selesai
+                    </span>
+                    <h3 className="mt-2 text-lg font-black leading-tight text-[#0F172A]">
+                      Hebat! Kamu Menyelamatkan Keluarga
+                    </h3>
+                  </div>
                 </div>
-                <div className="min-w-0 text-left">
-                  <span className="inline-block text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#86EFAC]">
-                    Misi Selesai
-                  </span>
-                  <h3 className="text-base font-black leading-tight text-[#0F172A]">Hebat! Kamu Menyelamatkan Keluarga</h3>
-                </div>
-              </div>
 
-              <div className="bg-[#FFF7ED] rounded-xl border-2 border-[#FFE8D6] p-2.5 space-y-1.5">
-                <div className="flex items-end justify-between">
-                  <p className="text-[9px] font-black uppercase tracking-wider text-[#B45309]">Skor Kasus</p>
-                  <p className="text-[9px] font-bold text-[#92400E]">Bukti {evidenceScore}/100 · +100 keputusan</p>
-                </div>
-                <div className="flex items-end gap-1">
-                  <span className="text-3xl font-black leading-none tabular-nums text-[#FF6B00]">{finalScore}</span>
-                  <span className="text-xs font-bold text-[#B45309] mb-0.5">/200</span>
-                  <div className="flex-1 h-1.5 mb-1 overflow-hidden rounded-full bg-[#FFE8D6]">
+                {/* Score hero */}
+                <div className="mx-4 mb-4 rounded-2xl border-2 border-[#FFE8D6] bg-[#FFF7ED] px-4 py-3 sm:mx-6 sm:mb-5 sm:py-4">
+                  <div className="flex items-end justify-between gap-2">
+                    <div>
+                      <p className="text-[11px] font-black uppercase tracking-wider text-[#B45309]">Skor Kasus</p>
+                      <div className="mt-1 flex items-end gap-1.5">
+                        <span className="text-5xl font-black leading-none tabular-nums text-[#FF6B00]">{finalScore}</span>
+                        <span className="pb-2 text-base font-bold text-[#B45309]">/200</span>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="text-[11px] font-bold text-[#92400E]">Bukti ditemukan</p>
+                      <p className="text-sm font-black text-[#0F172A]">{evidenceScore}<span className="text-[11px] font-bold text-[#64748B]">/100</span></p>
+                      <p className="mt-1 text-[11px] font-bold text-[#15803D]">Keputusan tepat</p>
+                      <p className="text-sm font-black text-[#15803D]">+100</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#FFE8D6]">
                     <div className="h-full rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FACC15]" style={{ width: `${Math.min(100, (finalScore / 200) * 100)}%` }} />
                   </div>
                 </div>
-              </div>
 
-              <div className="flex items-center justify-around bg-[#FFF7ED] rounded-lg border border-[#FFEDD5] py-2 text-center">
-                <div>
-                  <span className="text-[9px] font-bold text-[#64748B] block">XP</span>
-                  <p className="text-sm font-black text-[#FF6B00]">{victoryProfile.xp ?? 0}</p>
+                {/* Stats row */}
+                <div className="mx-4 mb-4 rounded-xl border border-[#FFEDD5] bg-[#FFF7ED] px-4 py-3 sm:mx-6 sm:mb-5 sm:py-3.5">
+                  <div className="grid grid-cols-3 divide-x divide-[#FED7AA] text-center">
+                    <div className="px-1">
+                      <p className="text-[11px] font-bold text-[#64748B]">Total XP</p>
+                      <p className="mt-1 text-xl font-black text-[#FF6B00] tabular-nums">{victoryProfile.xp ?? 0}</p>
+                    </div>
+                    <div className="px-1">
+                      <p className="text-[11px] font-bold text-[#64748B]">Rank</p>
+                      <p className="mt-1 text-sm font-black leading-tight text-[#15803D]">{victoryProfile.rank ?? 'Detektif Pemula'}</p>
+                    </div>
+                    <div className="px-1">
+                      <p className="text-[11px] font-bold text-[#64748B]">Kasus</p>
+                      <p className="mt-1 text-lg font-black text-[#15803D] tabular-nums">
+                        {victoryProfile.completedCases?.length ?? 0}<span className="text-sm font-bold text-[#64748B]">/{MISSIONS.length}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#FFE8D6]">
+                    <div className="h-full rounded-full bg-[#FF6B00]" style={{ width: `${Math.round(((victoryProfile.completedCases?.length ?? 0) / MISSIONS.length) * 100)}%` }} />
+                  </div>
                 </div>
-                <div className="w-px h-5 bg-[#FED7AA]" />
-                <div>
-                  <span className="text-[9px] font-bold text-[#64748B] block">Rank</span>
-                  <p className="text-[11px] font-black text-[#15803D]">{victoryProfile.rank ?? 'Pemula'}</p>
-                </div>
-                <div className="w-px h-5 bg-[#FED7AA]" />
-                <div>
-                  <span className="text-[9px] font-bold text-[#64748B] block">Kasus</span>
-                  <p className="text-xs font-black text-[#15803D]">{victoryProfile.completedCases?.length ?? 0}/{MISSIONS.length}</p>
-                </div>
-              </div>
 
-              <div className="flex flex-col gap-2">
-                {nextMission ? (
+                {/* CTA buttons: full-width, 48px touch targets on mobile */}
+                <div className="flex flex-col gap-3 px-4 pb-5 sm:px-6 sm:pb-6">
+                  {nextMission ? (
+                    <Link
+                      href={`/kasus/${nextMission.slug}`}
+                      className="btn-pill-orange flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-black shadow-lg"
+                    >
+                      <span>Lanjut ke Misi Berikutnya</span>
+                      <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/progres"
+                      className="btn-pill-orange flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-black shadow-lg"
+                    >
+                      <span>Lihat Progres &amp; Lencana</span>
+                      <Award size={16} />
+                    </Link>
+                  )}
+
                   <Link
-                    href={`/kasus/${nextMission.slug}`}
-                    className="btn-pill-orange w-full py-3 text-sm font-bold flex items-center justify-center gap-2 shadow-lg"
+                    href="/kasus"
+                    className="btn-pill-white flex min-h-[48px] w-full items-center justify-center rounded-full py-3 text-sm font-black"
                   >
-                    <span>Lanjut Misi Berikutnya</span>
-                    <ArrowRight size={14} />
+                    Peta Misi Kasus
                   </Link>
-                ) : (
-                  <Link
-                    href="/progres"
-                    className="btn-pill-orange w-full py-3 text-sm font-bold flex items-center justify-center gap-2 shadow-lg"
-                  >
-                    <span>Lihat Progres</span>
-                    <Award size={14} />
-                  </Link>
-                )}
-
-                <Link
-                  href="/kasus"
-                  className="btn-pill-white w-full py-3 text-sm font-bold"
-                >
-                  Peta Misi
-                </Link>
+                </div>
               </div>
             </div>
           </div>
